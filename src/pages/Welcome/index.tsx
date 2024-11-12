@@ -1,6 +1,6 @@
 import { Col, Grid, Row } from 'antd';
 import React from 'react';
-import { PageContainer, ProCard, } from '@ant-design/pro-components';
+import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { WELCOME_TITLE } from '@/constants';
 import { PostCardList } from '@/pages/Welcome/components';
 import RecommendUserList from '@/pages/Welcome/components/user/RecommendUserList';
@@ -20,7 +20,7 @@ const Welcome: React.FC = () => {
 
   return (
     <PageContainer title={WELCOME_TITLE} extra={isMobile ? '' : new Date().toLocaleDateString()}>
-      <Row gutter={16} wrap={true}>
+      <Row gutter={[16, 16]} wrap={true}>
         <Col span={isMobile ? 24 : 18}>
           <ProCard bordered bodyStyle={{ padding: isMobile ? '0' : '16px' }}>
             <PostCardList />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ProCard, ProForm, ProFormText, ProFormUploadDragger } from '@ant-design/pro-components';
-import { Grid, message, UploadProps } from 'antd';
+import { Grid, message, Space, UploadProps } from 'antd';
 import { MdEditor, TagTreeSelect } from '@/components';
 import { addPostUsingPost } from '@/services/trajectory-backend/postController';
 import { history } from '@umijs/max';
@@ -82,7 +82,7 @@ const CreatePostPage: React.FC = () => {
     },
   };
   return (
-    <ProCard title={"创建帖子"} extra={new Date().toLocaleDateString()} >
+    <ProCard title={'创建帖子'} headerBordered extra={new Date().toLocaleDateString()}>
       <ProForm<API.PostVO>
         onFinish={async (values) => {
           await handleCreatePost({
@@ -96,6 +96,16 @@ const CreatePostPage: React.FC = () => {
           searchConfig: {
             submitText: '新建帖子',
             resetText: '取消',
+          },
+          render: (_, dom) => {
+            return (
+              <div style={{ textAlign: 'right' }}>
+                <Space>
+                  {dom[0]}
+                  {dom[1]}
+                </Space>
+              </div>
+            );
           },
         }}
       >

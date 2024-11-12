@@ -16,9 +16,18 @@ export default [
   },
   {
     path: '/create',
-    name: '创建页面',
+    name: '创建页',
     icon: 'AppstoreAddOutlined',
-    routes: [{ name: '创建帖子', path: '/create/post', component: './Create/Post' }],
+    routes: [
+      { path: '/create', redirect: '/create/post' },
+      { name: '创建帖子', path: '/create/post', component: './Create/Post' },
+    ],
+  },
+  {
+    path: '/generate',
+    name: '智能分析',
+    icon: 'PieChartOutlined',
+    component: './Generate/Chart',
   },
   {
     path: '/account',

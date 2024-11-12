@@ -3,8 +3,7 @@ import { useParams } from '@@/exports';
 import { getPostVoByIdUsingGet } from '@/services/trajectory-backend/postController';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { Col, Grid, message, Row } from 'antd';
-import { TableOfContents } from '@/components';
-import { PostDetailsCard } from '@/pages/Post/components';
+import { PostDetailsCard, TableOfContents } from '@/components';
 
 const { useBreakpoint } = Grid;
 
@@ -12,7 +11,7 @@ const { useBreakpoint } = Grid;
  * 帖子详情页
  * @constructor
  */
-const PostPage: React.FC = () => {
+const PostDetailsPage: React.FC = () => {
   const { id } = useParams();
   // 帖子信息
   const [post, setPost] = useState<API.PostVO>({});
@@ -43,9 +42,9 @@ const PostPage: React.FC = () => {
   }, []);
   return (
     <PageContainer header={{ title: '' }}>
-      <Row gutter={16} align={'top'}>
+      <Row gutter={[16, 16]} align={'top'}>
         <Col span={isMobile ? 24 : 18}>
-          <PostDetailsCard post={post} isMobile={isMobile} />
+          <PostDetailsCard post={post} />
         </Col>
         <Col span={isMobile ? 24 : 6}>
           <ProCard
@@ -65,4 +64,4 @@ const PostPage: React.FC = () => {
   );
 };
 
-export default PostPage;
+export default PostDetailsPage;

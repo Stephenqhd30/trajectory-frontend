@@ -47,10 +47,10 @@ export async function editChartUsingPost(
   });
 }
 
-/** genChartBtAi POST /api/chart/gen */
-export async function genChartBtAiUsingPost(
+/** generateChartByAI POST /api/chart/gen */
+export async function generateChartByAiUsingPost(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.genChartBtAiUsingPOSTParams,
+  params: API.generateChartByAIUsingPOSTParams,
   body: {},
   file?: File,
   options?: { [key: string]: any },
