@@ -1,0 +1,67 @@
+.md-viewer {
+  max-width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.md-viewer img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 修改复制代码栏处的样式 */
+.md-viewer .markdown-body pre {
+  position: relative;
+  overflow: auto;
+  line-height: 1.75;
+  padding-top: 3em;
+}
+
+.code-block-extension-header {
+  display: flex;
+  user-select: none;
+  height: 28px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 1em;
+  background-color: rgb(248, 248, 248);
+  padding: 0.5em 1em;
+}
+
+.code-block-extension-header.code-block-extension-fold {
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.code-block-extension-headerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.code-block-extension-headerLeft > .code-block-extension-foldBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+  color: #707070; /* 初始颜色 */
+  margin-right: 8px;
+}
+
+.code-block-extension-headerLeft > .code-block-extension-foldBtn:hover {
+  cursor: pointer;
+  color: #1890ff; /* 悬停时变为蓝色 */
+}
+
+.code-block-extension-headerLeft > .code-block-extension-foldBtn.code-block-extension-fold {
+  transform: rotate(-90deg);
+}
+
+pre > code.code-block-extension-fold {
+  display: none !important;
+}
