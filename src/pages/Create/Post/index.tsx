@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { ProCard, ProForm, ProFormText, ProFormUploadDragger } from '@ant-design/pro-components';
 import { Grid, message, UploadProps } from 'antd';
 import { MdEditor, TagTreeSelect } from '@/components';
-import { addPostUsingPost } from '@/services/stephen-backend/postController';
+import { addPostUsingPost } from '@/services/trajectory-backend/postController';
 import { history } from '@umijs/max';
-import { uploadFileUsingPost } from '@/services/stephen-backend/fileController';
+import { uploadFileUsingPost } from '@/services/trajectory-backend/fileController';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 
 const { useBreakpoint } = Grid;

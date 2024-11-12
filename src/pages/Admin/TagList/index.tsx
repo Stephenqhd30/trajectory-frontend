@@ -7,7 +7,7 @@ import React, { useRef, useState } from 'react';
 import {
   deleteTagUsingPost,
   listTagByPageUsingPost,
-} from '@/services/stephen-backend/tagController';
+} from '@/services/trajectory-backend/tagController';
 import { CreateTagModal, UpdateTagModal } from '@/pages/Admin/TagList/components';
 import {tagStatus, TagStatusEnum} from '@/enums/TagStatusEnum';
 

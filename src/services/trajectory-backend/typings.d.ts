@@ -1,7 +1,19 @@
 declare namespace API {
+  type BaseResponseBIResponse_ = {
+    code?: number;
+    data?: BIResponse;
+    message?: string;
+  };
+
   type BaseResponseBoolean_ = {
     code?: number;
     data?: boolean;
+    message?: string;
+  };
+
+  type BaseResponseChartVO_ = {
+    code?: number;
+    data?: ChartVO;
     message?: string;
   };
 
@@ -38,6 +50,18 @@ declare namespace API {
   type BaseResponseMapStringObject_ = {
     code?: number;
     data?: Record<string, any>;
+    message?: string;
+  };
+
+  type BaseResponsePageChart_ = {
+    code?: number;
+    data?: PageChart_;
+    message?: string;
+  };
+
+  type BaseResponsePageChartVO_ = {
+    code?: number;
+    data?: PageChartVO_;
     message?: string;
   };
 
@@ -107,18 +131,94 @@ declare namespace API {
     message?: string;
   };
 
-  type checkUsingGETParams = {
-    /** echostr */
-    echostr?: string;
-    /** nonce */
-    nonce?: string;
-    /** signature */
-    signature?: string;
-    /** timestamp */
-    timestamp?: string;
+  type BIResponse = {
+    genChart?: string;
+    genResult?: string;
+  };
+
+  type Chart = {
+    chartData?: string;
+    chartType?: string;
+    createTime?: string;
+    genChart?: string;
+    genResult?: string;
+    goal?: string;
+    id?: number;
+    isDelete?: number;
+    name?: string;
+    tags?: string;
+    updateTime?: string;
+    userId?: number;
+  };
+
+  type ChartAddRequest = {
+    chartData?: string;
+    chartType?: string;
+    goal?: string;
+    name?: string;
+    tags?: string[];
+  };
+
+  type ChartEditRequest = {
+    chartData?: string;
+    chartType?: string;
+    goal?: string;
+    id?: number;
+    name?: string;
+    tags?: string[];
+  };
+
+  type ChartQueryRequest = {
+    chartType?: string;
+    current?: number;
+    goal?: string;
+    id?: number;
+    name?: string;
+    notId?: number;
+    pageSize?: number;
+    searchText?: string;
+    sortField?: string;
+    sortOrder?: string;
+    tags?: string[];
+    userId?: number;
+  };
+
+  type ChartUpdateRequest = {
+    chartData?: string;
+    chartType?: string;
+    goal?: string;
+    id?: number;
+    name?: string;
+    tags?: string[];
+  };
+
+  type ChartVO = {
+    chartData?: string;
+    chartType?: string;
+    createTime?: string;
+    genChart?: string;
+    genResult?: string;
+    goal?: string;
+    id?: number;
+    name?: string;
+    tags?: string[];
+    updateTime?: string;
+    userId?: number;
+    userVO?: UserVO;
   };
 
   type DeleteRequest = {
+    id?: number;
+  };
+
+  type genChartBtAiUsingPOSTParams = {
+    chartType?: string;
+    goal?: string;
+    name?: string;
+  };
+
+  type getChartVOByIdUsingGETParams = {
+    /** id */
     id?: number;
   };
 
@@ -160,6 +260,32 @@ declare namespace API {
   type OrderItem = {
     asc?: boolean;
     column?: string;
+  };
+
+  type PageChart_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: Chart[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageChartVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: ChartVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
   };
 
   type PagePost_ = {
@@ -399,9 +525,7 @@ declare namespace API {
     editTime?: string;
     id?: number;
     isDelete?: number;
-    mpOpenId?: string;
     tags?: string;
-    unionId?: string;
     updateTime?: string;
     userAccount?: string;
     userAvatar?: string;
@@ -435,11 +559,6 @@ declare namespace API {
     userPassword?: string;
     userPhone?: string;
     userProfile?: string;
-  };
-
-  type userLoginByWxOpenUsingGETParams = {
-    /** code */
-    code: string;
   };
 
   type UserLoginRequest = {

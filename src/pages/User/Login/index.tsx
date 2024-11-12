@@ -5,7 +5,7 @@ import { Divider, Image, message, Space, Tabs, theme, Typography } from 'antd';
 import React, { CSSProperties, useEffect, useState } from 'react';
 import { createStyles } from 'antd-style';
 import { BACKGROUND_IMAGE, STEPHEN_SUBTITLE, STEPHEN_TITLE } from '@/constants';
-import { userLoginUsingPost } from '@/services/stephen-backend/userController';
+import { userLoginUsingPost } from '@/services/trajectory-backend/userController';
 import { AlipayOutlined, TaobaoOutlined, WeiboOutlined } from '@ant-design/icons';
 import { AccountLoginPage, PhoneLoginPage } from '@/pages/User/Login/components';
 

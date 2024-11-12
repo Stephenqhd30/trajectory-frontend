@@ -75,7 +75,7 @@ export default defineConfig({
    * @name layout 插件
    * @doc https://umijs.org/docs/max/layout-menu
    */
-  title: 'Stephen的爆米花',
+  title: '轨迹智能BI平台',
   layout: {
     locale: true,
     ...defaultSettings,
@@ -132,7 +132,7 @@ export default defineConfig({
     {
       requestLibPath: "import { request } from '@umijs/max'",
       schemaPath: 'http://localhost:8080/api/v2/api-docs',
-      projectName: 'stephen-backend',
+      projectName: 'trajectory-backend',
     },
   ],
   mfsu: {

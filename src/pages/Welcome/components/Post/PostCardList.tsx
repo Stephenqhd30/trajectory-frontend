@@ -1,6 +1,6 @@
 import {ActionType, ProList} from '@ant-design/pro-components';
 import React, {useRef} from 'react';
-import {listPostVoByPageUsingPost} from '@/services/stephen-backend/postController';
+import {listPostVoByPageUsingPost} from '@/services/trajectory-backend/postController';
 import {PostCard} from '@/components';
 
 /**

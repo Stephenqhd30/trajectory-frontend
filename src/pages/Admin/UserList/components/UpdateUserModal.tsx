@@ -9,8 +9,8 @@ import {
 import '@umijs/max';
 import { message, Select, UploadProps } from 'antd';
 import React, { useState } from 'react';
-import { uploadFileUsingPost } from '@/services/stephen-backend/fileController';
-import { updateUserUsingPost } from '@/services/stephen-backend/userController';
+import { uploadFileUsingPost } from '@/services/trajectory-backend/fileController';
+import { updateUserUsingPost } from '@/services/trajectory-backend/userController';
 import { userRole, UserRoleEnum } from '@/enums/UserRoleEnum';
 import { TagTreeSelect } from '@/components';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { doPostFavourUsingPost } from '@/services/stephen-backend/postFavourController';
+import { doPostFavourUsingPost } from '@/services/trajectory-backend/postFavourController';
 import { Button, message, Space } from 'antd';
-import { doThumbUsingPost } from '@/services/stephen-backend/postThumbController';
+import { doThumbUsingPost } from '@/services/trajectory-backend/postThumbController';
 import { LikeOutlined, LikeTwoTone, StarOutlined, StarTwoTone } from '@ant-design/icons';
 
 interface Props {

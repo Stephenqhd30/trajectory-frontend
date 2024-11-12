@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { message } from 'antd';
-import { listMatchUserVoUsingPost } from '@/services/stephen-backend/userController';
+import { listMatchUserVoUsingPost } from '@/services/trajectory-backend/userController';
 
 export default () => {
   // 推荐用户列表

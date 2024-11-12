@@ -6,7 +6,7 @@ import React, { useRef, useState } from 'react';
 import {
   deleteUserUsingPost,
   listUserByPageUsingPost,
-} from '@/services/stephen-backend/userController';
+} from '@/services/trajectory-backend/userController';
 import { userRole, UserRoleEnum } from '@/enums/UserRoleEnum';
 import {
   CreateUserModal,
@@ -15,7 +15,7 @@ import {
 } from '@/pages/Admin/UserList/components';
 import { TagTreeSelect } from '@/components';
 import { TAG_EMPTY } from '@/constants';
-import { downloadUsingGet } from '@/services/stephen-backend/excelController';
+import { downloadUsingGet } from '@/services/trajectory-backend/excelController';
 
 /**
  * 删除节点

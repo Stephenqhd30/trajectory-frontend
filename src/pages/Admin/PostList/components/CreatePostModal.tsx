@@ -3,9 +3,9 @@ import { Grid, message, UploadProps } from 'antd';
 import React, { useState } from 'react';
 import {ModalForm, ProForm, ProFormText, ProFormTextArea, ProFormUploadDragger} from '@ant-design/pro-components';
 import { MdEditor, TagTreeSelect } from '@/components';
-import { addPostUsingPost } from '@/services/stephen-backend/postController';
+import { addPostUsingPost } from '@/services/trajectory-backend/postController';
 import { history } from '@@/core/history';
-import { uploadFileUsingPost } from '@/services/stephen-backend/fileController';
+import { uploadFileUsingPost } from '@/services/trajectory-backend/fileController';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 
 interface Props {

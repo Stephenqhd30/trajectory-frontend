@@ -3,7 +3,7 @@ import '@umijs/max';
 import {Button, message, Popconfirm, Space, Tag, Typography} from 'antd';
 import React, {useRef, useState} from 'react';
 import {CreatePostModal, UpdatePostModal} from '@/pages/Admin/PostList/components';
-import {deletePostUsingPost, listPostByPageUsingPost} from '@/services/stephen-backend/postController';
+import {deletePostUsingPost, listPostByPageUsingPost} from '@/services/trajectory-backend/postController';
 import {PlusOutlined} from '@ant-design/icons';
 import {TagTreeSelect} from '@/components';
 import {TAG_EMPTY} from '@/constants';

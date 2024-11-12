@@ -17,7 +17,7 @@ import 'bytemd/dist/index.css';
 import 'highlight.js/styles/vs.css';
 import './index.less';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
-import { uploadFileUsingPost } from '@/services/stephen-backend/fileController';
+import { uploadFileUsingPost } from '@/services/trajectory-backend/fileController';
 import { message } from 'antd';
 
 interface Props {

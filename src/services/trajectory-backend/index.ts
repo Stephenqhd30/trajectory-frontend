@@ -2,7 +2,7 @@
 /* eslint-disable */
 // API 更新时间：
 // API 唯一标识：
-import * as wxMpController from './wxMpController';
+import * as chartController from './chartController';
 import * as elasticsearchController from './elasticsearchController';
 import * as excelController from './excelController';
 import * as fileController from './fileController';
@@ -12,7 +12,7 @@ import * as postThumbController from './postThumbController';
 import * as tagController from './tagController';
 import * as userController from './userController';
 export default {
-  wxMpController,
+  chartController,
   elasticsearchController,
   excelController,
   fileController,

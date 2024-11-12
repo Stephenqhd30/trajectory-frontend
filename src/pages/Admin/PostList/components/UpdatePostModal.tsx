@@ -8,9 +8,9 @@ import {
 import '@umijs/max';
 import { Grid, message, UploadProps } from 'antd';
 import React, { useState } from 'react';
-import { updatePostUsingPost } from '@/services/stephen-backend/postController';
+import { updatePostUsingPost } from '@/services/trajectory-backend/postController';
 import { MdEditor, TagTreeSelect } from '@/components';
-import { uploadFileUsingPost } from '@/services/stephen-backend/fileController';
+import { uploadFileUsingPost } from '@/services/trajectory-backend/fileController';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 
 interface Props {

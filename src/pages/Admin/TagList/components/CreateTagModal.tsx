@@ -2,7 +2,7 @@ import { ProColumns, ProTable } from '@ant-design/pro-components';
 import '@umijs/max';
 import { message, Modal } from 'antd';
 import React from 'react';
-import { addTagUsingPost } from '@/services/stephen-backend/tagController';
+import { addTagUsingPost } from '@/services/trajectory-backend/tagController';
 
 interface CreateProps {
   onCancel: () => void;

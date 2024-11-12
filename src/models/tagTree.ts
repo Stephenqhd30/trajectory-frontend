@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { listTagByTreeUsingGet } from '@/services/stephen-backend/tagController';
+import { listTagByTreeUsingGet } from '@/services/trajectory-backend/tagController';
 import { message } from 'antd';
 
 export default () => {

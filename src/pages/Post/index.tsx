@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from '@@/exports';
-import { getPostVoByIdUsingGet } from '@/services/stephen-backend/postController';
+import { getPostVoByIdUsingGet } from '@/services/trajectory-backend/postController';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { Col, Grid, message, Row } from 'antd';
 import { TableOfContents } from '@/components';
