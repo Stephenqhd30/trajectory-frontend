@@ -1,5 +1,5 @@
 import '@umijs/max';
-import { message } from 'antd';
+import { message, Select } from 'antd';
 import React from 'react';
 import {
   ModalForm,
@@ -10,6 +10,8 @@ import {
   ProFormUploadDragger,
 } from '@ant-design/pro-components';
 import { addChartUsingPost } from '@/services/trajectory-backend/chartController';
+import { userRole, UserRoleEnum } from '@/enums/UserRoleEnum';
+import { ChartType, chartTypeEnum } from '@/enums/ChartTypeEnum';
 
 interface Props {
   onCancel: () => void;
@@ -18,7 +20,7 @@ interface Props {
 }
 
 /**
- * 创建帖子
+ * 创建图表
  * @param values
  */
 const handleAdd = async (values: API.ChartAddRequest) => {
@@ -26,7 +28,7 @@ const handleAdd = async (values: API.ChartAddRequest) => {
   try {
     const res = await addChartUsingPost(values);
     if (res.code === 0 && res.data) {
-      message.success('创建成功,3s之后跳转到创建的帖子页');
+      message.success('创建成功,3s之后跳转到创建的图表页');
       return true;
     } else {
       message.error(`创建失败${res.message}`);
@@ -41,7 +43,7 @@ const handleAdd = async (values: API.ChartAddRequest) => {
 };
 
 /**
- * 常见弹窗
+ * 创建弹窗
  * @param props
  * @constructor
  */
@@ -53,7 +55,7 @@ const CreateChartModal: React.FC<Props> = (props) => {
     <ModalForm
       open={visible}
       form={form}
-      title={'新建帖子'}
+      title={'新建图表'}
       onFinish={async (values) => {
         const success = await handleAdd({
           ...values,
@@ -87,20 +89,37 @@ const CreateChartModal: React.FC<Props> = (props) => {
         label="分析目标"
       />
       <ProFormSelect
-        fieldProps={{
-          labelInValue: true,
-        }}
         rules={[{ required: true, message: '请选择想要生成的图表类型' }]}
-        request={async () => [
-          { label: '柱状图', value: '柱状图' },
-          { label: '折线图', value: '折线图' },
-          { label: '饼图', value: '饼图' },
-          { label: '堆叠图', value: '堆叠图' },
-          { label: '雷达图', value: '雷达图' },
-        ]}
         name="chartType"
         label="请选择生成图表的类型"
-      />
+      >
+        <Select>
+          <Select.Option value={ChartType.Line}>
+            {chartTypeEnum[ChartType.Line].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Bar}>
+            {chartTypeEnum[ChartType.Bar].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Pie}>
+            {chartTypeEnum[ChartType.Pie].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Radar}>
+            {chartTypeEnum[ChartType.Radar].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Scatter}>
+            {chartTypeEnum[ChartType.Scatter].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Bubble}>
+            {chartTypeEnum[ChartType.Bubble].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Area}>
+            {chartTypeEnum[ChartType.Area].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Stacked}>
+            {chartTypeEnum[ChartType.Stacked].text}
+          </Select.Option>
+        </Select>
+      </ProFormSelect>
       <ProFormUploadDragger max={1} name="file" label="上传CSV文件" />
     </ModalForm>
   );

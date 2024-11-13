@@ -1,15 +1,12 @@
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import '@umijs/max';
-import { Button, message, Popconfirm, Space, Tag, Typography } from 'antd';
+import { Button, message, Popconfirm, Space, Typography } from 'antd';
 import React, { useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import { MdViewer, TagTreeSelect } from '@/components';
-import { TAG_EMPTY } from '@/constants';
-import {
-  deleteChartUsingPost,
-  listChartByPageUsingPost,
-} from '@/services/trajectory-backend/chartController';
+import { MdViewer } from '@/components';
+import { deleteChartUsingPost, listChartByPageUsingPost } from '@/services/trajectory-backend/chartController';
 import { CreateChartModal, UpdateChartModal } from '@/pages/Admin/ChartList/components';
+import { chartTypeEnum } from '@/enums/ChartTypeEnum';
 
 /**
  * 删除节点
@@ -70,8 +67,7 @@ const ChartList: React.FC = () => {
     {
       title: '图表类型',
       dataIndex: 'chartType',
-      hideInSearch: true,
-      hideInForm: true,
+      valueEnum: chartTypeEnum,
     },
     {
       title: '图表数据',
@@ -87,22 +83,6 @@ const ChartList: React.FC = () => {
       hideInForm: true,
       width: 500,
       render: (_, record) => <MdViewer value={record.genResult as string} />,
-    },
-    {
-      title: '标签',
-      dataIndex: 'tags',
-      render: (_, record) => {
-        if (record.tags) {
-          const tagList = JSON.parse(record.tags as string);
-          return tagList.map((tag) => (
-            <Tag key={tag} color={'blue'}>
-              {tag}
-            </Tag>
-          ));
-        }
-        return <Tag>{TAG_EMPTY}</Tag>;
-      },
-      renderFormItem: () => <TagTreeSelect name={'tags'} />,
     },
     {
       title: '创建用户id',

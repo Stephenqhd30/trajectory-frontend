@@ -17,11 +17,13 @@ const CreateChart: React.FC = () => {
   const scene = useBreakpoint();
   const isMobile = !scene.md;
   const onFinish = async (values: any) => {
+    // 回复数据
+    setChartItem({});
+    setOption(undefined);
     // 避免重复提交;
     const params = {
       ...values,
       file: undefined,
-      chartType: values.chartType.value,
     };
     const hide = message.loading('正在生成中...');
     try {
@@ -45,7 +47,7 @@ const CreateChart: React.FC = () => {
     <Row gutter={[16, 16]}>
       <Col span={isMobile ? 24 : 12}>
         <ProCard
-          title="图表分析页面"
+          title={<Typography.Title level={4}>图表分析页面</Typography.Title>}
           extra={new Date().toLocaleDateString()}
           split={'vertical'}
           bordered={false}
@@ -59,12 +61,12 @@ const CreateChart: React.FC = () => {
       <Col span={isMobile ? 24 : 12}>
         <Row gutter={[16, 16]}>
           <Col span={24}>
-            <ProCard title={<Typography.Title level={3}>分析结论</Typography.Title>}>
+            <ProCard headerBordered title={<Typography.Title level={4}>分析结论</Typography.Title>}>
               <MdViewer value={chartItem.genResult ?? '请现在左侧进行数据提交'} />
             </ProCard>
           </Col>
           <Col span={24}>
-            <ProCard title={<Typography.Title level={3}>数据展示</Typography.Title>}>
+            <ProCard headerBordered title={<Typography.Title level={4}>数据展示</Typography.Title>}>
               {option ? (
                 <ReactECharts option={option} />
               ) : (
@@ -73,7 +75,6 @@ const CreateChart: React.FC = () => {
             </ProCard>
           </Col>
         </Row>
-
       </Col>
     </Row>
   );

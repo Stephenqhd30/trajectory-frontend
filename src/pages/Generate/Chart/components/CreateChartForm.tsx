@@ -6,10 +6,11 @@ import {
   ProFormTextArea,
   ProFormUploadDragger,
 } from '@ant-design/pro-components';
-import { Space } from 'antd';
+import { Select, Space } from 'antd';
+import { ChartType, chartTypeEnum } from '@/enums/ChartTypeEnum';
 
-interface ChartFormProps {
-  onFinish: (values: any) => Promise<void>;
+interface Props {
+  onFinish: (values: API.ChartAddRequest) => Promise<void>;
 }
 
 /**
@@ -17,7 +18,7 @@ interface ChartFormProps {
  * @param props
  * @constructor
  */
-const CreateChartForm: React.FC<ChartFormProps> = (props) => {
+const CreateChartForm: React.FC<Props> = (props) => {
   const { onFinish } = props;
 
   return (
@@ -52,20 +53,37 @@ const CreateChartForm: React.FC<ChartFormProps> = (props) => {
         label="分析目标"
       />
       <ProFormSelect
-        fieldProps={{
-          labelInValue: true,
-        }}
         rules={[{ required: true, message: '请选择想要生成的图表类型' }]}
-        request={async () => [
-          { label: '柱状图', value: '柱状图' },
-          { label: '折线图', value: '折线图' },
-          { label: '饼图', value: '饼图' },
-          { label: '堆叠图', value: '堆叠图' },
-          { label: '雷达图', value: '雷达图' },
-        ]}
         name="chartType"
         label="请选择生成图表的类型"
-      />
+      >
+        <Select>
+          <Select.Option value={ChartType.Line}>
+            {chartTypeEnum[ChartType.Line].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Bar}>
+            {chartTypeEnum[ChartType.Bar].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Pie}>
+            {chartTypeEnum[ChartType.Pie].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Radar}>
+            {chartTypeEnum[ChartType.Radar].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Scatter}>
+            {chartTypeEnum[ChartType.Scatter].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Bubble}>
+            {chartTypeEnum[ChartType.Bubble].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Area}>
+            {chartTypeEnum[ChartType.Area].text}
+          </Select.Option>
+          <Select.Option value={ChartType.Stacked}>
+            {chartTypeEnum[ChartType.Stacked].text}
+          </Select.Option>
+        </Select>
+      </ProFormSelect>
       <ProFormUploadDragger max={1} name="file" label="上传CSV文件" />
     </ProForm>
   );
