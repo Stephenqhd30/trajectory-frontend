@@ -12,6 +12,7 @@ export default [
       { name: '用户管理', path: '/admin/user', component: './Admin/UserList' },
       { name: '帖子管理', path: '/admin/post', component: './Admin/PostList' },
       { name: '标签管理', path: '/admin/tag', component: './Admin/TagList' },
+      { name: '图表管理', path: '/admin/chart', component: './Admin/ChartList' },
     ],
   },
   {
@@ -28,6 +29,12 @@ export default [
     name: '智能分析',
     icon: 'PieChartOutlined',
     component: './Generate/Chart',
+  },
+  {
+    path: '/my/chart',
+    name: '我的图表',
+    icon: 'BarChartOutlined',
+    component: './MyChart',
   },
   {
     path: '/account',

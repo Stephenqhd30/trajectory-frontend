@@ -1,7 +1,13 @@
 import '@umijs/max';
-import { Grid, message, UploadProps } from 'antd';
+import { message, UploadProps } from 'antd';
 import React, { useState } from 'react';
-import {ModalForm, ProForm, ProFormText, ProFormTextArea, ProFormUploadDragger} from '@ant-design/pro-components';
+import {
+  ModalForm,
+  ProForm,
+  ProFormText,
+  ProFormTextArea,
+  ProFormUploadDragger,
+} from '@ant-design/pro-components';
 import { MdEditor, TagTreeSelect } from '@/components';
 import { addPostUsingPost } from '@/services/trajectory-backend/postController';
 import { history } from '@@/core/history';
@@ -14,7 +20,6 @@ interface Props {
   onSubmit: () => Promise<void>;
 }
 
-const { useBreakpoint } = Grid;
 
 /**
  * 创建帖子
@@ -49,8 +54,6 @@ const handleAdd = async (values: API.PostAddRequest) => {
  */
 const CreatePostModal: React.FC<Props> = (props) => {
   const { visible, onCancel, onSubmit } = props;
-  const scene = useBreakpoint();
-  const isMobile = !scene.md;
   // 帖子封面
   const [cover, setCover] = useState<any>();
   // 帖子内容
@@ -105,7 +108,6 @@ const CreatePostModal: React.FC<Props> = (props) => {
           onSubmit?.();
         }
       }}
-      layout={isMobile ? 'vertical' : 'horizontal'}
       autoFocusFirstInput
       modalProps={{
         destroyOnClose: true,

@@ -6,7 +6,7 @@ import {
   ProFormUploadDragger,
 } from '@ant-design/pro-components';
 import '@umijs/max';
-import { Grid, message, UploadProps } from 'antd';
+import { message, UploadProps } from 'antd';
 import React, { useState } from 'react';
 import { updatePostUsingPost } from '@/services/trajectory-backend/postController';
 import { MdEditor, TagTreeSelect } from '@/components';
@@ -20,7 +20,7 @@ interface Props {
   visible: boolean;
 }
 
-const { useBreakpoint } = Grid;
+
 
 /**
  * 更新节点
@@ -47,8 +47,6 @@ const handleUpdate = async (fields: API.PostUpdateRequest) => {
 };
 const UpdatePostModal: React.FC<Props> = (props) => {
   const { oldData, visible, onSubmit, onCancel } = props;
-  const scene = useBreakpoint();
-  const isMobile = !scene.md;
   // 帖子封面
   const [cover, setCover] = useState<any>();
   // 帖子内容
@@ -109,7 +107,6 @@ const UpdatePostModal: React.FC<Props> = (props) => {
           onSubmit?.(values);
         }
       }}
-      layout={isMobile ? 'vertical' : 'horizontal'}
       autoFocusFirstInput
       modalProps={{
         destroyOnClose: true,

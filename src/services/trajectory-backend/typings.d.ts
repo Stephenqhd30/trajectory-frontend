@@ -146,7 +146,6 @@ declare namespace API {
     id?: number;
     isDelete?: number;
     name?: string;
-    tags?: string;
     updateTime?: string;
     userId?: number;
   };
@@ -156,7 +155,6 @@ declare namespace API {
     chartType?: string;
     goal?: string;
     name?: string;
-    tags?: string[];
   };
 
   type ChartEditRequest = {
@@ -165,7 +163,6 @@ declare namespace API {
     goal?: string;
     id?: number;
     name?: string;
-    tags?: string[];
   };
 
   type ChartQueryRequest = {
@@ -179,7 +176,6 @@ declare namespace API {
     searchText?: string;
     sortField?: string;
     sortOrder?: string;
-    tags?: string[];
     userId?: number;
   };
 
@@ -189,7 +185,6 @@ declare namespace API {
     goal?: string;
     id?: number;
     name?: string;
-    tags?: string[];
   };
 
   type ChartVO = {
@@ -201,7 +196,6 @@ declare namespace API {
     goal?: string;
     id?: number;
     name?: string;
-    tags?: string[];
     updateTime?: string;
     userId?: number;
     userVO?: UserVO;

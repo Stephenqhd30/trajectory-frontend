@@ -1,7 +1,7 @@
-import {ActionType, ProList} from '@ant-design/pro-components';
-import React, {useRef} from 'react';
-import {listPostVoByPageUsingPost} from '@/services/trajectory-backend/postController';
-import {PostCard} from '@/components';
+import { ActionType, ProList } from '@ant-design/pro-components';
+import React, { useRef } from 'react';
+import { listPostVoByPageUsingPost } from '@/services/trajectory-backend/postController';
+import { PostCard } from '@/components';
 
 /**
  * 帖子列表
@@ -14,9 +14,14 @@ const PostCardList: React.FC = () => {
       onChange={() => {
         actionRef.current?.reload();
       }}
+      style={{
+        marginBottom: 8,
+      }}
       pagination={{
         pageSize: 10,
         showQuickJumper: true,
+        responsive: true,
+        showSizeChanger: true,
       }}
       actionRef={actionRef}
       itemLayout="vertical"
