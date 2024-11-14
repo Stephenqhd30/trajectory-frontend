@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { ProCard } from '@ant-design/pro-components';
-import { Col, Grid, message, Row, Typography } from 'antd';
+import { PageContainer, ProCard } from '@ant-design/pro-components';
+import { Col, Empty, Grid, message, Row, Typography } from 'antd';
 import ReactECharts from 'echarts-for-react';
-import { generateChartByAiUsingPost } from '@/services/trajectory-backend/chartController';
 import { CreateChartForm } from './components';
 import { MdViewer } from '@/components';
+import { GENERATE_TITLE } from '@/constants';
+import { genChartByAiUsingPost } from '@/services/trajectory-backend/chartController';
+import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 
 const { useBreakpoint } = Grid;
 /**
- * 添加图表页面
+ * 智能分析图表页面
  * @constructor
  */
 const CreateChart: React.FC = () => {
@@ -16,25 +18,34 @@ const CreateChart: React.FC = () => {
   const [option, setOption] = useState<any>();
   const scene = useBreakpoint();
   const isMobile = !scene.md;
+
+  /**
+   * 图表分析
+   * @param values
+   */
   const onFinish = async (values: any) => {
-    // 回复数据
+    // 将数据还原
     setChartItem({});
-    setOption(undefined);
-    // 避免重复提交;
+    setOption('');
     const params = {
       ...values,
       file: undefined,
     };
     const hide = message.loading('正在生成中...');
     try {
-      const res = await generateChartByAiUsingPost(params, {}, values.file[0].originFileObj);
+      const res = await genChartByAiUsingPost({
+        ...params,
+        biz: FileUploadBiz.GENERATE_EXCEL,
+      }, {}, values.file[0].originFileObj);
       if (res.code === 0 && res.data) {
-        const chartOption = JSON.parse(res.data.genChart ?? '');
+        const chartOption = res.data.genChart ? JSON.parse(res.data.genChart) : {};
         setChartItem(res.data);
         setOption(chartOption);
         message.success('分析成功');
       } else {
         message.error(`分析失败${res.message}`);
+        setChartItem({});
+        setOption('');
       }
     } catch (error: any) {
       message.error(`分析失败${error.message}`);
@@ -44,39 +55,47 @@ const CreateChart: React.FC = () => {
   };
 
   return (
-    <Row gutter={[16, 16]}>
-      <Col span={isMobile ? 24 : 12}>
-        <ProCard
-          title={<Typography.Title level={4}>图表分析页面</Typography.Title>}
-          extra={new Date().toLocaleDateString()}
-          split={'vertical'}
-          bordered={false}
-          headerBordered
-        >
-          <ProCard>
-            <CreateChartForm onFinish={onFinish} />
+    <PageContainer title={GENERATE_TITLE}>
+      <Row gutter={[16, 16]}>
+        <Col span={isMobile ? 24 : 12}>
+          <ProCard
+            title={<Typography.Title level={4}>图表分析页面</Typography.Title>}
+            extra={new Date().toLocaleDateString()}
+            split={'vertical'}
+            bordered={false}
+            headerBordered
+          >
+            <ProCard>
+              <CreateChartForm onFinish={onFinish} />
+            </ProCard>
           </ProCard>
-        </ProCard>
-      </Col>
-      <Col span={isMobile ? 24 : 12}>
-        <Row gutter={[16, 16]}>
-          <Col span={24}>
-            <ProCard headerBordered title={<Typography.Title level={4}>分析结论</Typography.Title>}>
-              <MdViewer value={chartItem.genResult ?? '请现在左侧进行数据提交'} />
-            </ProCard>
-          </Col>
-          <Col span={24}>
-            <ProCard headerBordered title={<Typography.Title level={4}>数据展示</Typography.Title>}>
-              {option ? (
-                <ReactECharts option={option} />
-              ) : (
-                <Typography.Text>请现在左侧进行数据提交</Typography.Text>
-              )}
-            </ProCard>
-          </Col>
-        </Row>
-      </Col>
-    </Row>
+        </Col>
+        <Col span={isMobile ? 24 : 12}>
+          <Row gutter={[16, 16]}>
+            <Col span={24}>
+              <ProCard
+                headerBordered
+                title={<Typography.Title level={4}>分析结论</Typography.Title>}
+              >
+                {chartItem.genResult ? (
+                  <MdViewer value={chartItem.genResult} />
+                ) : (
+                  <Empty description="暂无分析结论" />
+                )}
+              </ProCard>
+            </Col>
+            <Col span={24}>
+              <ProCard
+                headerBordered
+                title={<Typography.Title level={4}>数据展示</Typography.Title>}
+              >
+                {option ? <ReactECharts option={option} /> : <Empty description="暂无数据展示" />}
+              </ProCard>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </PageContainer>
   );
 };
 export default CreateChart;

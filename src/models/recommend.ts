@@ -24,14 +24,5 @@ export default () => {
     }
   };
 
-  /**
-   * 记载推荐用户列表
-   */
-  useEffect(() => {
-    if (recommendUserList.length === 0) {
-      loadData();
-    }
-  }, []);
-
   return { recommendUserList, loadData };
 };

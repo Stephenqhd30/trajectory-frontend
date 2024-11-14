@@ -18,12 +18,6 @@ export default () => {
     }
   };
 
-  useEffect(() => {
-    if (tagTreeList.length === 0) {
-      loadData();
-    }
-  }, []);
-
   return {
     tagTreeList,
     loadData,

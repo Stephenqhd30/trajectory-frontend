@@ -3,12 +3,14 @@ import React, { useRef } from 'react';
 import { listPostVoByPageUsingPost } from '@/services/trajectory-backend/postController';
 import { PostCard } from '@/components';
 
+
 /**
  * 帖子列表
  * @constructor
  */
 const PostCardList: React.FC = () => {
   const actionRef = useRef<ActionType>();
+
   return (
     <ProList<API.PostVO>
       onChange={() => {

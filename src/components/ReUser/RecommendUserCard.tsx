@@ -7,6 +7,11 @@ interface Props {
   user: API.UserVO;
 }
 
+/**
+ * 推荐用户卡片
+ * @param props
+ * @constructor
+ */
 const RecommendUserCard: React.FC<Props> = (props) => {
   const { user } = props;
 

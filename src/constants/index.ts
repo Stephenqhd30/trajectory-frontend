@@ -2,6 +2,7 @@ export const STEPHEN_AUTHOR = 'StephenQiu';
 export const STEPHEN_BLOG = 'https://blog.stephenqiu.icu/';
 export const STEPHEN_GITHUB = 'https://github.com/Stephenqhd30';
 export const STEPHEN_TITLE = '轨迹智能BI平台';
+export const GENERATE_TITLE = '我会发着呆,然后忘记你,接着紧紧闭上眼';
 export const MY_CHART_TITLE = "想要对你说的不敢说的爱，会不会有人可以明白";
 export const STEPHEN_SUBTITLE = '想要对你说的不敢说的爱，会不会有人可以明白';
 export const STEPHEN_DEFAULT_MESSAGE = '轨迹智能BI平台';

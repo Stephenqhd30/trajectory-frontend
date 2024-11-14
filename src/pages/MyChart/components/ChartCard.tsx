@@ -19,16 +19,12 @@ const ChartCard: React.FC<Props> = (props) => {
   const scene = useBreakpoint();
   const isMobile = !scene.md;
   return (
-    <ProCard>
-      <ProCard
-        bodyStyle={{ padding: isMobile ? 4 : 16 }}
-        headStyle={{ padding: isMobile ? 4 : 16 }}
-        extra={isMobile ? null : <div>{dayjs(chart.createTime).format('YYYY-MM-DD')}</div>}
-        title={<UserAvatarCard user={chart?.userVO ?? {}} />}
-      >
-        <ReactECharts option={JSON.parse(chart.genChart as string)} />
-        <MdViewer value={chart.genResult} />
-      </ProCard>
+    <ProCard
+      extra={isMobile ? null : <div>{dayjs(chart.createTime).format('YYYY-MM-DD')}</div>}
+      title={<UserAvatarCard user={chart?.userVO ?? {}} />}
+    >
+      <ReactECharts option={chart.genChart ? JSON.parse(chart.genChart) : {}} />
+      <MdViewer value={chart.genResult} />
     </ProCard>
   );
 };

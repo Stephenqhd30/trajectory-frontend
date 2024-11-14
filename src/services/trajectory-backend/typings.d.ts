@@ -205,7 +205,8 @@ declare namespace API {
     id?: number;
   };
 
-  type generateChartByAIUsingPOSTParams = {
+  type genChartByAiUsingPOSTParams = {
+    biz?: string;
     chartType?: string;
     goal?: string;
     name?: string;

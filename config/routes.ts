@@ -19,6 +19,7 @@ export default [
     path: '/create',
     name: '创建页',
     icon: 'AppstoreAddOutlined',
+    access: 'canAdmin',
     routes: [
       { path: '/create', redirect: '/create/post' },
       { name: '创建帖子', path: '/create/post', component: './Create/Post' },
@@ -56,7 +57,6 @@ export default [
   },
   {
     name: 'exception',
-    icon: 'warning',
     path: '/exception',
     layout: false,
     routes: [
