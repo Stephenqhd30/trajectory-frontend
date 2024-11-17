@@ -1,20 +1,21 @@
 import React from 'react';
-import MarkNav from 'markdown-navbar';
-import 'markdown-navbar/dist/navbar.css';
+import { MdCatalog } from 'md-editor-rt';
 
 interface Props {
-  markdownContent: string;
+  scrollElement: HTMLElement;
+  editorId: string;
 }
 
 /**
  * 目录
- * @param markdownContent
+ * @param props
  * @constructor
  */
-const TableOfContents: React.FC<Props> = ({markdownContent}) => {
+const TableOfContents: React.FC<Props> = (props) => {
+  const { scrollElement, editorId } = props;
   return (
     <div className={'markdown-navigation'}>
-      <MarkNav source={markdownContent} ordered={false} />
+      <MdCatalog editorId={editorId} scrollElement={scrollElement} />
     </div>
   );
 };

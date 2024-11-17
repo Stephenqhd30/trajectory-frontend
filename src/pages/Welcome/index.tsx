@@ -19,10 +19,17 @@ const Welcome: React.FC = () => {
   const isMobile = !screens.md;
 
   return (
-    <PageContainer title={WELCOME_TITLE} extra={isMobile ? '' : new Date().toLocaleDateString()}>
+    <PageContainer
+      token={{
+        paddingBlockPageContainerContent: 16,
+        paddingInlinePageContainerContent: 24,
+      }}
+      title={WELCOME_TITLE}
+      extra={isMobile ? '' : new Date().toLocaleDateString()}
+    >
       <Row gutter={[16, 16]} wrap={true}>
         <Col span={isMobile ? 24 : 18}>
-          <ProCard bordered bodyStyle={{ padding: isMobile ? '0' : '16px' }}>
+          <ProCard bordered bodyStyle={{ padding: isMobile ? '4px' : '16px' }}>
             <PostCardList />
           </ProCard>
         </Col>

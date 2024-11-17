@@ -8,7 +8,7 @@ import {
   ProFormTextArea,
   ProFormUploadDragger,
 } from '@ant-design/pro-components';
-import { MdEditor, TagTreeSelect } from '@/components';
+import { MyMdEditor, TagTreeSelect } from '@/components';
 import { addPostUsingPost } from '@/services/trajectory-backend/postController';
 import { history } from '@@/core/history';
 import { uploadFileUsingPost } from '@/services/trajectory-backend/fileController';
@@ -124,7 +124,7 @@ const CreatePostModal: React.FC<Props> = (props) => {
     >
       <ProFormText name="title" label="标题" />
       <ProFormTextArea name="content" label="描述" >
-        <MdEditor
+        <MyMdEditor
           value={content}
           onChange={(value) => setContent(value)}
           placeholder={'请填写内容'}

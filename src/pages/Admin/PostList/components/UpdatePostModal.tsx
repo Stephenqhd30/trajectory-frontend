@@ -9,7 +9,7 @@ import '@umijs/max';
 import { message, UploadProps } from 'antd';
 import React, { useState } from 'react';
 import { updatePostUsingPost } from '@/services/trajectory-backend/postController';
-import { MdEditor, TagTreeSelect } from '@/components';
+import { MyMdEditor, TagTreeSelect } from '@/components';
 import { uploadFileUsingPost } from '@/services/trajectory-backend/fileController';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 
@@ -123,7 +123,7 @@ const UpdatePostModal: React.FC<Props> = (props) => {
     >
       <ProFormText initialValue={oldData?.title} name="title" label="标题" />
       <ProFormTextArea initialValue={oldData?.content} name="content" label="内容">
-        <MdEditor
+        <MyMdEditor
           value={content}
           onChange={(value) => setContent(value)}
           placeholder={'请填写内容'}

@@ -19,9 +19,7 @@ const TagTreeSelect: React.FC<Props> = (props) => {
   const [value, setValue] = useState<string[]>(initialValue);
 
   useEffect(() => {
-    if (tagTreeList?.length === 0) {
-      loadData();
-    }
+    loadData();
   }, []);
   return (
     <ProFormTreeSelect

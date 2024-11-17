@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from '@@/exports';
 import { getPostVoByIdUsingGet } from '@/services/trajectory-backend/postController';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
-import { Col, Grid, message, Row } from 'antd';
-import { PostDetailsCard, TableOfContents } from '@/components';
+import { Col, Grid, message, Row, Typography } from 'antd';
+import { MdViewer, TableOfContents } from '@/components';
+import UserAvatarCard from '../../components/ReUser/UserAvatarCard';
+import dayjs from 'dayjs';
 
 const { useBreakpoint } = Grid;
 
@@ -17,8 +19,11 @@ const PostDetailsPage: React.FC = () => {
   const [post, setPost] = useState<API.PostVO>({});
   // 加载中
   const [loading, setLoading] = useState<boolean>(false);
+  const [scrollElement] = useState(document.documentElement);
+
   const scene = useBreakpoint();
   const isMobile = !scene.md;
+  const editorId = `md-editor-${post?.id}`
 
   const loadData = async () => {
     setLoading(true);
@@ -44,19 +49,28 @@ const PostDetailsPage: React.FC = () => {
     <PageContainer header={{ title: '' }}>
       <Row gutter={[16, 16]} align={'top'}>
         <Col span={isMobile ? 24 : 18}>
-          <PostDetailsCard post={post} />
+          <ProCard
+            wrap
+            title={<UserAvatarCard user={post.userVO ?? {}} />}
+            gutter={16}
+            extra={isMobile ? '' : dayjs(post.createTime).format('YYYY-MM-DD HH:mm:ss')}
+          >
+            <Typography.Title level={3}>{post.title}</Typography.Title>
+            <MdViewer key={post?.id} value={post.content} id={editorId as string} />
+          </ProCard>
         </Col>
         <Col span={isMobile ? 24 : 6}>
           <ProCard
             title={'目录'}
             bordered={false}
-            collapsible
-            defaultCollapsed={false}
             loading={loading}
             headerBordered
-            style={{ width: 300 }}
           >
-            <TableOfContents markdownContent={post.content as string} />
+            <TableOfContents
+              key={post.id}
+              editorId={editorId as string}
+              scrollElement={scrollElement}
+            />
           </ProCard>
         </Col>
       </Row>
