@@ -1,4 +1,4 @@
-import { Avatar, message, UploadProps } from 'antd';
+import { Avatar, Grid, message, Space, UploadProps } from 'antd';
 import React, { useState } from 'react';
 import { updateMyUserUsingPost } from '@/services/trajectory-backend/userController';
 import {
@@ -15,9 +15,18 @@ interface BaseViewProps {
   user: API.User;
 }
 
+const { useBreakpoint } = Grid;
+
+/**
+ * 个人基本信息
+ * @param props
+ * @constructor
+ */
 const BaseView: React.FC<BaseViewProps> = (props) => {
   const { user } = props;
   const [userAvatar, setUserAvatar] = useState<string>();
+  const scene = useBreakpoint();
+  const isMobile = !scene.md;
   /**
    * 更新用户信息
    * @param values
@@ -77,43 +86,52 @@ const BaseView: React.FC<BaseViewProps> = (props) => {
   return (
     <ProCard
       title="更新个人基本信息"
-      extra={new Date().toLocaleDateString()}
+      extra={isMobile ? null : new Date().toLocaleDateString()}
       headerBordered
-      bodyStyle={{ padding: '0' }}
+      bodyStyle={{ padding: isMobile ? '4px' : '24px' }}
+      headStyle={{ padding: isMobile ? '4px' : '24px' }}
     >
-      <ProCard>
-        <ProForm
-          layout="vertical"
-          onFinish={async (values) => {
-            await handleUpdate(values);
+      <ProForm
+        layout="vertical"
+        onFinish={async (values) => {
+          await handleUpdate(values);
+        }}
+        submitter={{
+          searchConfig: {
+            submitText: '更新用户信息',
+            resetText: '重置用户信息',
+          },
+          render: (_, dom) => {
+            return (
+              <div style={{ textAlign: 'right' }}>
+                <Space>
+                  {dom[0]}
+                  {dom[1]}
+                </Space>
+              </div>
+            );
+          },
+        }}
+        initialValues={user}
+      >
+        <ProFormText name="userName" label="用户名" />
+        <ProFormText name="userPhone" label="电话" />
+        <ProFormText name="userEmail" label="邮箱" />
+        <ProFormTextArea name="userProfile" label="简介" />
+        <Avatar
+          size={{ xs: 64, sm: 64, md: 64, lg: 64, xl: 100, xxl: 120 }}
+          icon={<AntDesignOutlined />}
+          src={user?.userAvatar}
+        />
+        <ProFormUploadButton
+          title={'上传头像'}
+          max={1}
+          fieldProps={{
+            ...updateProps,
           }}
-          submitter={{
-            searchConfig: {
-              submitText: '更新用户信息',
-            },
-            render: (_, dom) => dom[1],
-          }}
-          initialValues={user}
-        >
-          <ProFormText name="userName" label="用户名" />
-          <ProFormText name="userPhone" label="电话" />
-          <ProFormText name="userEmail" label="邮箱" />
-          <ProFormTextArea name="userProfile" label="简介" />
-          <Avatar
-            size={{ xs: 64, sm: 64, md: 64, lg: 64, xl: 100, xxl: 120 }}
-            icon={<AntDesignOutlined />}
-            src={user?.userAvatar}
-          />
-          <ProFormUploadButton
-            title={'上传头像'}
-            max={1}
-            fieldProps={{
-              ...updateProps,
-            }}
-            name="pic"
-          />
-        </ProForm>
-      </ProCard>
+          name="pic"
+        />
+      </ProForm>
     </ProCard>
   );
 };

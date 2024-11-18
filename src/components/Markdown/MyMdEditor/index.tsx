@@ -141,8 +141,9 @@ const MyMdEditor: React.FC<Props> = (props) => {
         onChange={onChange}
         onGetCatalog={setList}
         onUploadImg={uploadImages}
-        toolbarsExclude={['github']}
-        previewTheme={'cyanosis'}
+        toolbarsExclude={['github', 'htmlPreview']}
+        previewTheme={'github'}
+
       />
     </div>
   );

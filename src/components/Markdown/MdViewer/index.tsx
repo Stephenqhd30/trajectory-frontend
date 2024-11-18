@@ -17,7 +17,7 @@ const MdViewer:React.FC<Props> = (props) => {
 
   return (
     <div className="md-viewer">
-      <MdPreview id={id} value={value} previewTheme={'cyanosis'} />
+      <MdPreview id={id} value={value} previewTheme={'github'} autoFoldThreshold={200} />
     </div>
   );
 };

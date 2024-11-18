@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { listTagByTreeUsingGet } from '@/services/trajectory-backend/tagController';
 import { message } from 'antd';
 
-export default () => {
+/**
+ * 标签树
+ * @constructor
+ */
+const TagTree =  () => {
   const [tagTreeList, setTagTreeList] = useState<API.TagDTO[]>([]);
 
   const loadData = async () => {
@@ -23,3 +27,5 @@ export default () => {
     loadData,
   };
 };
+
+export default TagTree;

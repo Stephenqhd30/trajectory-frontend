@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from '@@/exports';
 import { getPostVoByIdUsingGet } from '@/services/trajectory-backend/postController';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
-import { Col, Grid, message, Row, Typography } from 'antd';
+import { Col, Empty, Grid, message, Row, Typography } from 'antd';
 import { MdViewer, TableOfContents } from '@/components';
 import UserAvatarCard from '../../components/ReUser/UserAvatarCard';
 import dayjs from 'dayjs';
@@ -65,6 +65,7 @@ const PostDetailsPage: React.FC = () => {
             bordered={false}
             loading={loading}
             headerBordered
+            onEmptied={() => <Empty />}
           >
             <TableOfContents
               key={post.id}
