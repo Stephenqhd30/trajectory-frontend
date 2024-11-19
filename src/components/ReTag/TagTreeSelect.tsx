@@ -1,5 +1,5 @@
 import { ProFormTreeSelect } from '@ant-design/pro-components';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useModel } from '@umijs/max';
 
 interface Props {
@@ -15,12 +15,9 @@ interface Props {
  */
 const TagTreeSelect: React.FC<Props> = (props) => {
   const { name, label = "", initialValue = [] } = props;
-  const { loadData, tagTreeList } = useModel('tagTree');
+  const { tagTreeList } = useModel('tagTree');
   const [value, setValue] = useState<string[]>(initialValue);
 
-  useEffect(() => {
-    loadData();
-  }, []);
   return (
     <ProFormTreeSelect
       name={name}

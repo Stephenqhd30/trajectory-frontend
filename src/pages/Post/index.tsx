@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from '@@/exports';
-import { getPostVoByIdUsingGet } from '@/services/trajectory-backend/postController';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { Col, Empty, Grid, message, Row, Typography } from 'antd';
-import { MdViewer, TableOfContents } from '@/components';
-import UserAvatarCard from '../../components/ReUser/UserAvatarCard';
-import dayjs from 'dayjs';
+import { MdViewer, PostAvatarCard, TableOfContents } from '@/components';
+import { getPostVoByIdUsingGet } from '@/services/trajectory-backend/postController';
+import { RecommendUserCard } from '@/pages/Welcome/components';
 
 const { useBreakpoint } = Grid;
 
@@ -23,7 +22,7 @@ const PostDetailsPage: React.FC = () => {
 
   const scene = useBreakpoint();
   const isMobile = !scene.md;
-  const editorId = `md-editor-${post?.id}`
+  const editorId = `md-editor-${post?.id}`;
 
   const loadData = async () => {
     setLoading(true);
@@ -46,32 +45,43 @@ const PostDetailsPage: React.FC = () => {
     loadData();
   }, []);
   return (
-    <PageContainer header={{ title: '' }}>
+    <PageContainer
+      header={{ title: '' }}
+      token={{
+        paddingBlockPageContainerContent: 24,
+        paddingInlinePageContainerContent: isMobile? 4 : 60,
+      }}
+    >
       <Row gutter={[16, 16]} align={'top'}>
         <Col span={isMobile ? 24 : 18}>
-          <ProCard
-            wrap
-            title={<UserAvatarCard user={post.userVO ?? {}} />}
-            gutter={16}
-            extra={isMobile ? '' : dayjs(post.createTime).format('YYYY-MM-DD HH:mm:ss')}
-          >
-            <Typography.Title level={3}>{post.title}</Typography.Title>
-            <MdViewer key={post?.id} value={post.content} id={editorId as string} />
+          <ProCard title={<PostAvatarCard post={post} />} gutter={[16, 16]}>
+            <Typography.Title level={5}>{post?.title}</Typography.Title>
+            <Typography.Paragraph>
+              <MdViewer key={post?.id} value={post.content} id={editorId as string} />
+            </Typography.Paragraph>
           </ProCard>
         </Col>
-        <Col span={isMobile ? 24 : 6}>
-          <ProCard
-            title={'目录'}
-            bordered={false}
-            loading={loading}
-            headerBordered
-            onEmptied={() => <Empty />}
-          >
-            <TableOfContents
-              key={post.id}
-              editorId={editorId as string}
-              scrollElement={scrollElement}
-            />
+        <Col span={isMobile ? 0 : 6}>
+          <ProCard ghost={true}>
+            <Row gutter={[16, 16]}>
+              <Col span={24}>
+                <ProCard
+                  title={'目录'}
+                  bordered={false}
+                  loading={loading}
+                  headerBordered
+                >
+                  <TableOfContents
+                    key={post.id}
+                    editorId={editorId as string}
+                    scrollElement={scrollElement}
+                  />
+                </ProCard>
+              </Col>
+              <Col span={24}>
+                <RecommendUserCard />
+              </Col>
+            </Row>
           </ProCard>
         </Col>
       </Row>

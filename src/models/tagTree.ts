@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { listTagByTreeUsingGet } from '@/services/trajectory-backend/tagController';
 import { message } from 'antd';
 
@@ -21,6 +21,12 @@ const TagTree =  () => {
       message.error('获取树形组件失败');
     }
   };
+  /**
+   * 记载推荐用户列表
+   */
+  useEffect(() => {
+    loadData();
+  }, []);
 
   return {
     tagTreeList,

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { message } from 'antd';
 import { listMatchUserVoUsingPost } from '@/services/trajectory-backend/userController';
 
@@ -27,6 +27,13 @@ const Recommend = () => {
       }
     }
   };
+
+  /**
+   * 记载推荐用户列表
+   */
+  useEffect(() => {
+    loadData();
+  }, []);
 
   return { recommendUserList, loadData };
 };

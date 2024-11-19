@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { config, HeadList, MdEditor } from 'md-editor-rt';
 import 'md-editor-rt/lib/style.css';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
-import { uploadFileUsingPost } from '@/services/trajectory-backend/fileController';
 import { message } from 'antd';
 import './index.less';
+import {uploadFileUsingPost} from '@/services/trajectory-backend/fileController';
 
 interface Props {
   value?: string;

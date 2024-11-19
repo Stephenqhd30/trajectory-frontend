@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { doPostFavourUsingPost } from '@/services/trajectory-backend/postFavourController';
-import { Button, message, Space } from 'antd';
+import { Divider, message, Space, Statistic } from 'antd';
 import { doThumbUsingPost } from '@/services/trajectory-backend/postThumbController';
 import { LikeOutlined, LikeTwoTone, StarOutlined, StarTwoTone } from '@ant-design/icons';
 
@@ -57,24 +57,23 @@ const ActionTabbar: React.FC<Props> = ({ post }) => {
     }
   };
   return (
-    <>
-      <Button
-        key={'thumb'}
-        icon={hasThumb ? <LikeTwoTone /> : <LikeOutlined />}
-        type={'text'}
-        onClick={handleThumb}
-      >
-        {thumbNum}
-      </Button>
-      <Button
-        icon={hasFavour ? <StarTwoTone /> : <StarOutlined />}
-        key={'favour'}
-        type={'text'}
-        onClick={handleFavour}
-      >
-        {favourNum}
-      </Button>
-    </>
+    <Space>
+      <div onClick={handleThumb}>
+        <Statistic
+          value={thumbNum}
+          prefix={hasThumb ? <LikeTwoTone /> : <LikeOutlined />}
+          valueStyle={{ fontSize: 14 }}
+        />
+      </div>
+      <Divider type={'vertical'} />
+      <div onClick={handleFavour}>
+        <Statistic
+          value={favourNum}
+          prefix={hasFavour ? <StarTwoTone /> : <StarOutlined />}
+          valueStyle={{ fontSize: 14 }}
+        />
+      </div>
+    </Space>
   );
 };
 

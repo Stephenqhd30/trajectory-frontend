@@ -6,9 +6,9 @@
 import Footer from './Footer';
 import { AvatarDropdown, AvatarName } from './RightContent/AvatarDropdown';
 import { MyMdEditor, MdViewer, TableOfContents } from '@/components/Markdown';
-import { RecommendUserCard, UserAvatarCard } from '@/components/ReUser';
+import { RecommendUser, UserAvatarCard } from '@/components/ReUser';
 import { TagTreeSelect } from '@/components/ReTag';
-import { ActionTabbar, PostCard } from '@/components/RePost';
+import { ActionTabbar, PostCard, PostAvatarCard } from '@/components/RePost';
 
 export {
   Footer,
@@ -17,9 +17,10 @@ export {
   MdViewer,
   MyMdEditor,
   TableOfContents,
-  UserAvatarCard,
   TagTreeSelect,
   PostCard,
   ActionTabbar,
-  RecommendUserCard,
+  RecommendUser,
+  UserAvatarCard,
+  PostAvatarCard
 };

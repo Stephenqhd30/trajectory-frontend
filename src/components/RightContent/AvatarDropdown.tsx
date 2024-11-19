@@ -1,13 +1,12 @@
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { history, Link, useModel } from '@umijs/max';
-import {Avatar, Button, Space} from 'antd';
+import { Avatar, Button, Space } from 'antd';
 import { stringify } from 'querystring';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import React, { useCallback } from 'react';
 import { flushSync } from 'react-dom';
 import HeaderDropdown from '../HeaderDropdown';
 import { userLogoutUsingPost } from '@/services/trajectory-backend/userController';
-import UserAvatarCard from '@/components/ReUser/UserAvatarCard';
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -21,7 +20,7 @@ export const AvatarName = () => {
 
 /**
  * 头像下拉框
- * @param menu
+ * @param menu menu
  * @constructor
  */
 export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
@@ -101,13 +100,11 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
       }}
     >
       <Space>
-        <Space>
-          {currentUser?.userAvatar ? (
-            <UserAvatarCard user={currentUser} />
-          ) : (
-            <Avatar icon={<UserOutlined />} />
-          )}
-        </Space>
+        {currentUser?.userAvatar ? (
+          <Avatar src={currentUser?.userAvatar} />
+        ) : (
+          <Avatar icon={<UserOutlined />} />
+        )}
       </Space>
     </HeaderDropdown>
   );

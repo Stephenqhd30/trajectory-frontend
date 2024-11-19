@@ -205,7 +205,7 @@ const UserList: React.FC = () => {
       <ProTable<API.User, API.PageParams>
         headerTitle={'查询表格'}
         actionRef={actionRef}
-        rowKey={'id'}
+        rowKey={'key'}
         search={{
           labelWidth: 120,
         }}

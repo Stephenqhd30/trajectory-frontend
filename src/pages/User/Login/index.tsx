@@ -42,6 +42,10 @@ const iconStyles: CSSProperties = {
 };
 
 
+/**
+ * 登录页面
+ * @constructor
+ */
 const Login: React.FC = () => {
   const [type, setType] = useState<string>('account');
   const { token } = theme.useToken();

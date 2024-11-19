@@ -1,18 +1,17 @@
 import { PageContainer, ProCard } from '@ant-design/pro-components';
 import React, { useEffect, useState } from 'react';
-
 import { ACCOUNT_TITLE } from '@/constants';
-import BaseView from '@/pages/Account/Settings/components/BaseView';
-import SecurityView from '@/pages/Account/Settings/components/SecurityView';
-import BindingView from '@/pages/Account/Settings/components/BindingView';
-import styles from './index.less';
+import { BaseView, BindingView, SecurityView } from '@/pages/Account/Settings/components';
 import { Grid } from 'antd';
-import {useModel} from '@@/exports';
+import { useModel } from '@@/exports';
 
 const { useBreakpoint } = Grid;
 
+/**
+ * 个人设置
+ * @constructor
+ */
 const Settings: React.FC = () => {
-
   const { initialState } = useModel("@@initialState");
   const currentUser = initialState?.currentUser || {};
   const [activeKeyTab, setActiveKeyTab] = useState<string>(() => {
@@ -24,12 +23,19 @@ const Settings: React.FC = () => {
   }, [activeKeyTab]);
 
   const screens = useBreakpoint();
-  const isMobile = !screens.md; // 576px 以下为移动端
+  const isMobile = !screens.md;
 
   return (
-    <PageContainer title={ACCOUNT_TITLE}>
+    <PageContainer
+      token={{
+        paddingBlockPageContainerContent: 24,
+        paddingInlinePageContainerContent: isMobile? 4 : 60,
+      }}
+      title={ACCOUNT_TITLE}
+      breadcrumb={undefined}
+      extra={new Date().toLocaleDateString()}
+    >
       <ProCard
-        className={styles.proCard}
         tabs={{
           tabPosition: isMobile ? 'top' : 'left',
           activeKey: activeKeyTab,
@@ -37,7 +43,7 @@ const Settings: React.FC = () => {
             {
               label: `基本设置`,
               key: 'base',
-              children: <BaseView user={currentUser}/>,
+              children: <BaseView user={currentUser} />,
             },
             {
               label: `账号绑定`,

@@ -1,4 +1,4 @@
+import RecommendUser from '@/components/ReUser/RecommendUser';
 import UserAvatarCard from '@/components/ReUser/UserAvatarCard';
-import RecommendUserCard from '@/components/ReUser/RecommendUserCard';
 
-export { UserAvatarCard, RecommendUserCard };
+export { RecommendUser, UserAvatarCard };

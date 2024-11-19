@@ -1,7 +1,7 @@
 import { ProCard } from '@ant-design/pro-components';
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
-import { MdViewer, UserAvatarCard } from '@/components';
+import { MdViewer } from '@/components';
 import { Grid } from 'antd';
 import dayjs from 'dayjs';
 
@@ -21,10 +21,9 @@ const ChartCard: React.FC<Props> = (props) => {
   return (
     <ProCard
       extra={isMobile ? null : <div>{dayjs(chart.createTime).format('YYYY-MM-DD')}</div>}
-      title={<UserAvatarCard user={chart?.userVO ?? {}} />}
     >
       <ReactECharts option={chart.genChart ? JSON.parse(chart.genChart) : {}} />
-      <MdViewer value={chart.genResult} />
+      <MdViewer value={chart.genResult}  id={`my-chart-${chart.id}`}/>
     </ProCard>
   );
 };

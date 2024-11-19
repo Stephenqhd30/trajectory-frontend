@@ -1,6 +1,5 @@
 import { Avatar, Grid, message, Space, UploadProps } from 'antd';
 import React, { useState } from 'react';
-import { updateMyUserUsingPost } from '@/services/trajectory-backend/userController';
 import {
   ProCard,
   ProForm,
@@ -9,10 +8,13 @@ import {
   ProFormUploadButton,
 } from '@ant-design/pro-components';
 import { AntDesignOutlined } from '@ant-design/icons';
+import {updateMyUserUsingPost} from '@/services/trajectory-backend/userController';
 import { uploadFileUsingPost } from '@/services/trajectory-backend/fileController';
+import {FileUploadBiz} from '@/enums/FileUploadBizEnum';
+import {TagTreeSelect} from '@/components';
 
 interface BaseViewProps {
-  user: API.User;
+  user: API.UserVO;
 }
 
 const { useBreakpoint } = Grid;
@@ -62,7 +64,7 @@ const BaseView: React.FC<BaseViewProps> = (props) => {
       try {
         const res = await uploadFileUsingPost(
           {
-            biz: 'user_avatar',
+            biz: FileUploadBiz.USER_AVATAR,
           },
           {
             file: file,
@@ -130,6 +132,11 @@ const BaseView: React.FC<BaseViewProps> = (props) => {
             ...updateProps,
           }}
           name="pic"
+        />
+        <TagTreeSelect
+          name={'tags'}
+          label={'标签'}
+          initialValue={user?.tags}
         />
       </ProForm>
     </ProCard>

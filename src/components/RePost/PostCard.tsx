@@ -1,10 +1,9 @@
 import React from 'react';
 import { ProCard } from '@ant-design/pro-components';
-import UserAvatarCard from '@/components/ReUser/UserAvatarCard';
-import { Col, Grid, Image, Row, Typography } from 'antd';
+import { Col, Divider, Grid, Image, Row, Typography } from 'antd';
 
 import { history } from '@umijs/max';
-import { ActionTabbar } from '@/components';
+import { ActionTabbar, PostAvatarCard } from '@/components';
 
 interface Props {
   post: API.PostVO;
@@ -22,51 +21,50 @@ const PostCard: React.FC<Props> = ({post}) => {
   const isMobile = !scene.md;
 
   return (
-    <ProCard
-      headerBordered={true}
-      gutter={[{ xs: 8, sm: 16, md: 24 }, 16]}
-      bodyStyle={{ padding: 0 }}
-    >
-      <Row align={'middle'}>
-        <Col span={isMobile ? 24 : 16}>
+    <ProCard bodyStyle={{ padding: isMobile? 4 : 24}}>
+      <Row>
+        <Col span={isMobile ? 24 : post?.cover ? 18 : 24}>
           <ProCard
-            colSpan={isMobile ? '100%' : '70'}
-            title={<UserAvatarCard user={post.userVO ?? {}} />}
+            title={<PostAvatarCard key={post.id} post={post} />}
+            headStyle={{ padding: 4 }}
+            bodyStyle={{ padding: 4 }}
           >
-            <ProCard
-              layout={'default'}
-              headStyle={{ padding: 4 }}
-              bodyStyle={{ padding: 4 }}
+            <div
+              onClick={() => {
+                history.push(`/post/${post.id}`);
+              }}
             >
-              <div
-                onClick={() => {
-                  history.push(`/post/${post.id}`);
+              <Typography.Title level={5}>{post?.title}</Typography.Title>
+              <Typography.Paragraph
+                ellipsis={{
+                  rows: 3,
+                  expandable: false,
+                  symbol: '读多',
                 }}
               >
-                <Typography.Title level={5}>{post?.title}</Typography.Title>
-                <Typography.Paragraph
-                  ellipsis={{
-                    rows: 3,
-                    expandable: false,
-                    symbol: 'more',
-                  }}
-                >
-                  {post.content}
-                </Typography.Paragraph>
-              </div>
-              <ActionTabbar post={post} />
-            </ProCard>
+                {post.content}
+              </Typography.Paragraph>
+            </div>
+            <ActionTabbar post={post} />
           </ProCard>
         </Col>
-        <Col span={isMobile ? 24 : 8}>
-          <ProCard colSpan={isMobile ? '100%' : '30'} layout={'center'}>
-            <Image
-              src={post?.cover}
-              style={{ width: isMobile ? '100%' : 'auto', maxHeight: '120px' }}
-            />
-          </ProCard>
+        <Col span={isMobile ? 24 : 6}>
+          {post?.cover && (
+            <ProCard bodyStyle={{ padding: 0 }}>
+              <Image
+                src={post?.cover}
+                style={{
+                  objectFit: 'cover',
+                  width: '213px',
+                  height: '128px',
+                }}
+                alt={post?.title}
+              />
+            </ProCard>
+          )}
         </Col>
       </Row>
+      <Divider key={post?.id} />
     </ProCard>
   );
 };
