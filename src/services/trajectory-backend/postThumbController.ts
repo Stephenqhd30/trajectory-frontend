@@ -16,3 +16,33 @@ export async function doThumbUsingPost(
     ...(options || {}),
   });
 }
+
+/** listThumbPostByPage POST /api/post_thumb/list/page */
+export async function listThumbPostByPageUsingPost(
+  body: API.PostThumbQueryRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponsePagePostVO_>('/api/post_thumb/list/page', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** listMyThumbPostByPage POST /api/post_thumb/my/list/page */
+export async function listMyThumbPostByPageUsingPost(
+  body: API.PostQueryRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponsePagePostVO_>('/api/post_thumb/my/list/page', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}

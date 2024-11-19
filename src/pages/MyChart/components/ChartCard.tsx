@@ -1,9 +1,8 @@
-import { ProCard } from '@ant-design/pro-components';
+import { StatisticCard } from '@ant-design/pro-components';
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
-import { MdViewer } from '@/components';
+import { ChartAvatarCard, MdViewer } from '@/components';
 import { Grid } from 'antd';
-import dayjs from 'dayjs';
 
 interface Props {
   chart: API.ChartVO;
@@ -19,12 +18,13 @@ const ChartCard: React.FC<Props> = (props) => {
   const scene = useBreakpoint();
   const isMobile = !scene.md;
   return (
-    <ProCard
-      extra={isMobile ? null : <div>{dayjs(chart.createTime).format('YYYY-MM-DD')}</div>}
-    >
-      <ReactECharts option={chart.genChart ? JSON.parse(chart.genChart) : {}} />
-      <MdViewer value={chart.genResult}  id={`my-chart-${chart.id}`}/>
-    </ProCard>
+    <StatisticCard
+      statistic={{
+        title: <ChartAvatarCard chart={chart} />,
+        valueRender: () => <MdViewer value={chart.genResult} id={`my-chart-${chart.id}`} />,
+      }}
+      chart={<ReactECharts option={chart.genChart ? JSON.parse(chart.genChart) : {}} />}
+    />
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from '@@/exports';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
-import { Col, Empty, Grid, message, Row, Typography } from 'antd';
+import { Col, Grid, message, Row, Typography } from 'antd';
 import { MdViewer, PostAvatarCard, TableOfContents } from '@/components';
 import { getPostVoByIdUsingGet } from '@/services/trajectory-backend/postController';
 import { RecommendUserCard } from '@/pages/Welcome/components';

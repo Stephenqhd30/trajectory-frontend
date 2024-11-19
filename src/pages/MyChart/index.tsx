@@ -26,11 +26,10 @@ const MyChartPage: React.FC = () => {
           xxl: 2,
         }}
         pagination={{
-          pageSize: 4,
+          pageSize: 50,
           responsive: true,
           showQuickJumper: true,
           showSizeChanger: true,
-          pageSizeOptions: ['4', '8', '12', '16'],
           onChange: () => {
             actionRef.current?.reload();
           },

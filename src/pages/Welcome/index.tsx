@@ -20,17 +20,10 @@ const Welcome: React.FC = () => {
   const isMobile = !screens.md;
   const actionRef = useRef<ActionType>();
   return (
-    <PageContainer
-      title={WELCOME_TITLE}
-      token={{
-        paddingBlockPageContainerContent: 24,
-        paddingInlinePageContainerContent: 8,
-      }}
-      extra={isMobile ? '' : new Date().toLocaleDateString()}
-    >
+    <PageContainer title={WELCOME_TITLE}>
       <Row gutter={16} wrap={true}>
         <Col span={isMobile ? 24 : 18}>
-          <ProCard bordered bodyStyle={{padding: isMobile? 4 : 16}}>
+          <ProCard bordered bodyStyle={{ padding: isMobile ? 4 : 16 }}>
             <ProList<API.PostVO>
               onChange={() => {
                 actionRef.current?.reload();
@@ -64,9 +57,7 @@ const Welcome: React.FC = () => {
           </ProCard>
         </Col>
         <Col span={isMobile ? 0 : 6}>
-          <ProCard bordered bodyStyle={{padding: 0, width: 320}}>
-            <RecommendUserCard />
-          </ProCard>
+          <RecommendUserCard />
         </Col>
       </Row>
     </PageContainer>

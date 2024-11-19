@@ -5,10 +5,11 @@
  */
 import Footer from './Footer';
 import { AvatarDropdown, AvatarName } from './RightContent/AvatarDropdown';
-import { MyMdEditor, MdViewer, TableOfContents } from '@/components/Markdown';
+import { MdViewer, MyMdEditor, TableOfContents } from '@/components/Markdown';
 import { RecommendUser, UserAvatarCard } from '@/components/ReUser';
 import { TagTreeSelect } from '@/components/ReTag';
-import { ActionTabbar, PostCard, PostAvatarCard } from '@/components/RePost';
+import { ActionTabbar, PostAvatarCard, PostCard } from '@/components/RePost';
+import { ChartAvatarCard } from '@/components/ReChart';
 
 export {
   Footer,
@@ -22,5 +23,6 @@ export {
   ActionTabbar,
   RecommendUser,
   UserAvatarCard,
-  PostAvatarCard
+  PostAvatarCard,
+  ChartAvatarCard,
 };

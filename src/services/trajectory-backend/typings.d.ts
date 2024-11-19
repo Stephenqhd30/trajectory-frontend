@@ -241,7 +241,7 @@ declare namespace API {
     createTime?: string;
     editTime?: string;
     id?: number;
-    tagList?: string[];
+    tags?: string[];
     updateTime?: string;
     userAvatar?: string;
     userEmail?: string;
@@ -421,6 +421,15 @@ declare namespace API {
 
   type PostThumbAddRequest = {
     postId?: number;
+  };
+
+  type PostThumbQueryRequest = {
+    current?: number;
+    pageSize?: number;
+    postQueryRequest?: PostQueryRequest;
+    sortField?: string;
+    sortOrder?: string;
+    userId?: number;
   };
 
   type PostUpdateRequest = {
