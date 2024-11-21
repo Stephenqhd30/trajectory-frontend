@@ -3,7 +3,7 @@ import { ActionType, PageContainer, ProList } from '@ant-design/pro-components';
 import { listMyChartVoByPageUsingPost } from '@/services/trajectory-backend/chartController';
 import { MY_CHART_TITLE } from '@/constants';
 import { ChartCard } from '@/pages/MyChart/components';
-import { message, Skeleton } from 'antd';
+import { message } from 'antd';
 
 /**
  * 我的图表页面

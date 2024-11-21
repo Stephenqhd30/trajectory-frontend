@@ -21,14 +21,14 @@ const PostCard: React.FC<Props> = ({post}) => {
   const isMobile = !scene.md;
 
   return (
-    <ProCard bodyStyle={{ padding: isMobile? 4 : 24}}>
+    <ProCard
+      title={<PostAvatarCard key={post.id} post={post} />}
+      headStyle={{ padding: isMobile ? 4 : undefined }}
+      bodyStyle={{ padding: isMobile ? 4 : 24 }}
+    >
       <Row>
         <Col span={isMobile ? 24 : post?.cover ? 18 : 24}>
-          <ProCard
-            title={<PostAvatarCard key={post.id} post={post} />}
-            headStyle={{ padding: 4 }}
-            bodyStyle={{ padding: 4 }}
-          >
+          <ProCard bodyStyle={{ padding: 4 }}>
             <div
               onClick={() => {
                 history.push(`/post/${post.id}`);
@@ -39,7 +39,7 @@ const PostCard: React.FC<Props> = ({post}) => {
                 ellipsis={{
                   rows: 3,
                   expandable: false,
-                  symbol: '读多',
+                  symbol: '...',
                 }}
               >
                 {post.content}

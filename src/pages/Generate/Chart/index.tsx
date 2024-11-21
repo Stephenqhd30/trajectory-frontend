@@ -78,7 +78,7 @@ const CreateChart: React.FC = () => {
                 title={<Typography.Title level={4}>分析结论</Typography.Title>}
               >
                 {chartItem.genResult ? (
-                  <MdViewer value={chartItem.genResult} />
+                  <MdViewer value={chartItem.genResult} id={`my-chart}`} />
                 ) : (
                   <Empty description="暂无分析结论" />
                 )}
@@ -89,7 +89,11 @@ const CreateChart: React.FC = () => {
                 headerBordered
                 title={<Typography.Title level={4}>数据展示</Typography.Title>}
               >
-                {option ? <ReactECharts option={option} /> : <Empty description="暂无数据展示" />}
+                {option ? (
+                  <ReactECharts option={option} notMerge={true} lazyUpdate={true} />
+                ) : (
+                  <Empty description="暂无数据展示" />
+                )}
               </ProCard>
             </Col>
           </Row>
