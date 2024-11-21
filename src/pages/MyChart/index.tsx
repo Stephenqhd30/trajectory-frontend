@@ -3,7 +3,7 @@ import { ActionType, PageContainer, ProList } from '@ant-design/pro-components';
 import { listMyChartVoByPageUsingPost } from '@/services/trajectory-backend/chartController';
 import { MY_CHART_TITLE } from '@/constants';
 import { ChartCard } from '@/pages/MyChart/components';
-import { message } from 'antd';
+import { message, Skeleton } from 'antd';
 
 /**
  * 我的图表页面
@@ -26,30 +26,38 @@ const MyChartPage: React.FC = () => {
           xxl: 2,
         }}
         pagination={{
-          pageSize: 50,
-          responsive: true,
+          pageSize: 8,
           showQuickJumper: true,
-          showSizeChanger: true,
+          responsive: true,
           onChange: () => {
             actionRef.current?.reload();
-          },
+          }
         }}
         request={async (params, sort, filter) => {
+          const sortField = 'createTime';
+          const sortOrder = 'descend';
           try {
-            const sortField = Object.keys(sort)?.[0];
-            const sortOrder = sort?.[sortField] ?? undefined;
-            const { data, code } = await listMyChartVoByPageUsingPost({
+            const { code, data } = await listMyChartVoByPageUsingPost({
               ...params,
               ...filter,
               sortField,
               sortOrder,
             });
-            return {
-              success: code === 0,
-              data: data?.records || [],
-              total: data?.total || 0,
-              current: data?.current || 1,
-            };
+            if (code === 0 && data) {
+              return {
+                success: code === 0,
+                data: data?.records || [],
+                total: data?.total || 0,
+                current: data?.current || 1,
+              };
+            } else {
+              return {
+                success: false,
+                data: [],
+                total: 0,
+                current: 1,
+              };
+            }
           } catch (error: any) {
             message.error(`加载失败，请重试${error.message}`);
             return {
@@ -61,7 +69,7 @@ const MyChartPage: React.FC = () => {
           }
         }}
         rowKey={'id'}
-        renderItem={(record) => <ChartCard chart={record} />}
+        renderItem={(record) =><ChartCard chart={record} />}
       />
     </PageContainer>
   );

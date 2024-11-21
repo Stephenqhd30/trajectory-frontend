@@ -31,9 +31,6 @@ const PostAvatarCard: React.FC<Props> = (props) => {
             {dayjs(chart.createTime).format('YYYY-MM-DD HH:mm:ss')}
           </Typography.Text>
         ),
-        valueStyle: {
-          fontSize: 14,
-        },
       }}
       chart={<Avatar size={48} src={chart?.userVO?.userAvatar} alt={chart?.userVO?.userName} />}
       chartPlacement="left"
