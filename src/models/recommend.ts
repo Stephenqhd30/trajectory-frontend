@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { message } from 'antd';
 import { listMatchUserVoUsingPost } from '@/services/trajectory-backend/userController';
 
@@ -6,7 +6,7 @@ import { listMatchUserVoUsingPost } from '@/services/trajectory-backend/userCont
  * 推荐用户
  * @constructor
  */
-const Recommend = () => {
+export default () => {
   // 推荐用户列表
   const [recommendUserList, setRecommendUserList] = useState<API.UserVO[]>([]);
 
@@ -28,14 +28,5 @@ const Recommend = () => {
     }
   };
 
-  /**
-   * 记载推荐用户列表
-   */
-  useEffect(() => {
-    loadData();
-  }, []);
-
   return { recommendUserList, loadData };
 };
-
-export default Recommend;

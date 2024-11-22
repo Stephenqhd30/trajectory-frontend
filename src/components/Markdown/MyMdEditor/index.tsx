@@ -139,11 +139,12 @@ const MyMdEditor: React.FC<Props> = (props) => {
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        previewTheme="vuepress"
         onGetCatalog={setList}
         onUploadImg={uploadImages}
-        toolbarsExclude={['github', 'htmlPreview']}
-        previewTheme={'github'}
-
+        toolbarsExclude={['github', 'htmlPreview', 'prettier']}
+        showToolbarName={true}
+        autoFoldThreshold={200}
       />
     </div>
   );

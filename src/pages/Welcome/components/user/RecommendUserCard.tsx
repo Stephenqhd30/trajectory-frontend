@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ProCard, ProList } from '@ant-design/pro-components';
 import { ReloadOutlined } from '@ant-design/icons';
 import { RecommendUser } from '@/components';
@@ -9,7 +9,10 @@ import { useModel } from '@@/exports';
  * @constructor
  */
 const RecommendUserCard: React.FC = () => {
-  const { recommendUserList } = useModel('recommend');
+  const { loadData, recommendUserList } = useModel('recommend');
+  useEffect(() => {
+    loadData();
+  }, []);
 
   return (
     <ProCard extra={<ReloadOutlined />} title={'推荐用户'}>

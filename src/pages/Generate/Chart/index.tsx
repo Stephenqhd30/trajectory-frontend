@@ -60,7 +60,6 @@ const CreateChart: React.FC = () => {
         <Col span={isMobile ? 24 : 12}>
           <ProCard
             title={<Typography.Title level={4}>图表分析页面</Typography.Title>}
-            extra={new Date().toLocaleDateString()}
             split={'vertical'}
             bordered={false}
             headerBordered
@@ -78,7 +77,7 @@ const CreateChart: React.FC = () => {
                 title={<Typography.Title level={4}>分析结论</Typography.Title>}
               >
                 {chartItem.genResult ? (
-                  <MdViewer value={chartItem.genResult} id={`my-chart}`} />
+                  <MdViewer value={chartItem.genResult} />
                 ) : (
                   <Empty description="暂无分析结论" />
                 )}

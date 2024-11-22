@@ -45,32 +45,19 @@ const PostDetailsPage: React.FC = () => {
     loadData();
   }, []);
   return (
-    <PageContainer
-      header={{ title: '' }}
-      token={{
-        paddingBlockPageContainerContent: 24,
-        paddingInlinePageContainerContent: isMobile? 4 : 60,
-      }}
-    >
+    <PageContainer header={{ title: '' }}>
       <Row gutter={[16, 16]} align={'top'}>
         <Col span={isMobile ? 24 : 18}>
-          <ProCard title={<PostAvatarCard post={post} />} gutter={[16, 16]}>
-            <Typography.Title level={5}>{post?.title}</Typography.Title>
-            <Typography.Paragraph>
-              <MdViewer key={post?.id} value={post.content} id={editorId as string} />
-            </Typography.Paragraph>
+          <ProCard title={<PostAvatarCard post={post} />}>
+            <Typography.Title level={3}>{post?.title}</Typography.Title>
+            <MdViewer key={post?.id} value={post.content} id={editorId as string} />
           </ProCard>
         </Col>
         <Col span={isMobile ? 0 : 6}>
           <ProCard ghost={true}>
             <Row gutter={[16, 16]}>
-              <Col span={24}>
-                <ProCard
-                  title={'目录'}
-                  bordered={false}
-                  loading={loading}
-                  headerBordered
-                >
+              <Col span={isMobile ? 0 : 24}>
+                <ProCard title={'目录'} bordered={false} loading={loading} headerBordered>
                   <TableOfContents
                     key={post.id}
                     editorId={editorId as string}
@@ -78,7 +65,7 @@ const PostDetailsPage: React.FC = () => {
                   />
                 </ProCard>
               </Col>
-              <Col span={24}>
+              <Col span={isMobile ? 0 : 24}>
                 <RecommendUserCard />
               </Col>
             </Row>
