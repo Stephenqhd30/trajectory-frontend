@@ -14,14 +14,13 @@ interface Props {
  * @constructor
  */
 const TagTreeSelect: React.FC<Props> = (props) => {
-  const { name, label = "", initialValue = [] } = props;
-  const { loadData, tagTreeList } = useModel('tagTree');
+  const { name, label = '', initialValue = [] } = props;
+  const { loadData, tags } = useModel('tags');
   const [value, setValue] = useState<string[]>(initialValue);
 
   useEffect(() => {
     loadData();
   }, []);
-
   return (
     <ProFormTreeSelect
       name={name}
@@ -29,7 +28,7 @@ const TagTreeSelect: React.FC<Props> = (props) => {
       allowClear
       key={'id'}
       request={async () => {
-        return tagTreeList?.map((tag) => ({
+        return tags?.map((tag) => ({
           title: tag.tagName,
           value: tag.tagName,
           children: tag.children?.map((child) => ({

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from '@@/exports';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { Col, Grid, message, Row, Typography } from 'antd';
-import { MdViewer, PostAvatarCard, TableOfContents } from '@/components';
+import {MdViewer, PostTitleCard, TableOfContents, UserCard} from '@/components';
 import { getPostVoByIdUsingGet } from '@/services/trajectory-backend/postController';
-import { RecommendUserCard } from '@/pages/Welcome/components';
 
 const { useBreakpoint } = Grid;
 
@@ -33,9 +32,12 @@ const PostDetailsPage: React.FC = () => {
       });
       if (res.code === 0 && res.data) {
         setPost(res.data);
+      } else {
+        setPost({});
       }
     } catch (error: any) {
       message.error(error.message || '加载失败');
+      setPost({});
     } finally {
       setLoading(false);
     }
@@ -48,15 +50,19 @@ const PostDetailsPage: React.FC = () => {
     <PageContainer header={{ title: '' }}>
       <Row gutter={[16, 16]} align={'top'}>
         <Col span={isMobile ? 24 : 18}>
-          <ProCard title={<PostAvatarCard post={post} />}>
-            <Typography.Title level={3}>{post?.title}</Typography.Title>
-            <MdViewer key={post?.id} value={post.content} id={editorId as string} />
+          <ProCard title={<PostTitleCard post={post} />} gutter={[16, 16]}>
+            <Typography.Paragraph>
+              <MdViewer key={post?.id} value={post.content} id={editorId as string} />
+            </Typography.Paragraph>
           </ProCard>
         </Col>
         <Col span={isMobile ? 0 : 6}>
           <ProCard ghost={true}>
             <Row gutter={[16, 16]}>
-              <Col span={isMobile ? 0 : 24}>
+              <Col span={24}>
+                <UserCard title={'作者'} user={post?.userVO ?? {}} />
+              </Col>
+              <Col span={24}>
                 <ProCard title={'目录'} bordered={false} loading={loading} headerBordered>
                   <TableOfContents
                     key={post.id}
@@ -64,9 +70,6 @@ const PostDetailsPage: React.FC = () => {
                     scrollElement={scrollElement}
                   />
                 </ProCard>
-              </Col>
-              <Col span={isMobile ? 0 : 24}>
-                <RecommendUserCard />
               </Col>
             </Row>
           </ProCard>

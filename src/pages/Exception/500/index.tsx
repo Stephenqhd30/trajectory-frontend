@@ -1,7 +1,12 @@
 import { Link } from '@umijs/max';
 import { Button, Result } from 'antd';
+import React from 'react';
 
-export default () => (
+/**
+ * 500页面
+ * @constructor
+ */
+const ServerErrorPage: React.FC = () => (
   <Result
     status="500"
     title="500"
@@ -13,3 +18,5 @@ export default () => (
     }
   />
 );
+
+export default ServerErrorPage;

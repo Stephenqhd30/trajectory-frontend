@@ -1,3 +1,3 @@
-import { RecommendUserCard } from '@/pages/Welcome/components/user';
+import RecommendUserList from '@/pages/Welcome/components/user/RecommendUserList';
 
-export { RecommendUserCard };
+export { RecommendUserList };

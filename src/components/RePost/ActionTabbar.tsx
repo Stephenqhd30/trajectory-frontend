@@ -8,6 +8,11 @@ interface Props {
   post: API.PostVO;
 }
 
+/**
+ * 帖子操作栏
+ * @param post
+ * @constructor
+ */
 const ActionTabbar: React.FC<Props> = ({ post }) => {
   // 点赞状态
   const [hasThumb, setHasThumb] = useState<boolean>(post.hasThumb ?? false);
@@ -61,14 +66,20 @@ const ActionTabbar: React.FC<Props> = ({ post }) => {
       <div onClick={handleThumb}>
         <Statistic
           value={thumbNum}
+          onMouseEnter={(e) => (e.currentTarget.style.cursor = 'pointer')}
+          onMouseLeave={(e) => (e.currentTarget.style.cursor = 'default')}
           prefix={hasThumb ? <LikeTwoTone /> : <LikeOutlined />}
-          valueStyle={{ fontSize: 14 }}
-        />
+          valueStyle={{
+            fontSize: 14,
+          }}
+          />
       </div>
       <Divider type={'vertical'} />
       <div onClick={handleFavour}>
         <Statistic
           value={favourNum}
+          onMouseEnter={(e) => (e.currentTarget.style.cursor = 'pointer')}
+          onMouseLeave={(e) => (e.currentTarget.style.cursor = 'default')}
           prefix={hasFavour ? <StarTwoTone /> : <StarOutlined />}
           valueStyle={{ fontSize: 14 }}
         />

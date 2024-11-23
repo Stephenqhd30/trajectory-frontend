@@ -23,8 +23,8 @@ const PostCard: React.FC<Props> = ({post}) => {
   return (
     <ProCard
       title={<PostAvatarCard key={post.id} post={post} />}
-      headStyle={{ padding: isMobile ? 4 : undefined }}
-      bodyStyle={{ padding: isMobile ? 4 : 24 }}
+      headStyle={{ padding: 4}}
+      bodyStyle={{ padding: isMobile ? 4 : 16 }}
     >
       <Row>
         <Col span={isMobile ? 24 : post?.cover ? 18 : 24}>
@@ -34,12 +34,11 @@ const PostCard: React.FC<Props> = ({post}) => {
                 history.push(`/post/${post.id}`);
               }}
             >
-              <Typography.Title level={5}>{post?.title}</Typography.Title>
               <Typography.Paragraph
                 ellipsis={{
                   rows: 3,
                   expandable: false,
-                  symbol: '...',
+                  symbol: '读多',
                 }}
               >
                 {post.content}

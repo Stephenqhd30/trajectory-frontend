@@ -4,7 +4,7 @@ import { ActionType, PageContainer, ProCard, ProList } from '@ant-design/pro-com
 import { WELCOME_TITLE } from '@/constants';
 import { listPostVoByPageUsingPost } from '@/services/trajectory-backend/postController';
 import { PostCard } from '@/components';
-import { RecommendUserCard } from '@/pages/Welcome/components';
+import { RecommendUserList } from '@/pages/Welcome/components';
 
 
 // 响应式组件
@@ -57,7 +57,9 @@ const Welcome: React.FC = () => {
           </ProCard>
         </Col>
         <Col span={isMobile ? 0 : 6}>
-          <RecommendUserCard />
+          <ProCard bordered bodyStyle={{ padding: 0, width: 320 }}>
+            <RecommendUserList />
+          </ProCard>
         </Col>
       </Row>
     </PageContainer>

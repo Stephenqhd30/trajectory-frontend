@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatisticCard } from '@ant-design/pro-components';
-import { Avatar, Typography } from 'antd';
+import {Avatar, Divider, Space, Typography} from 'antd';
 import dayjs from 'dayjs';
 
 interface Props {
@@ -20,22 +20,24 @@ const PostAvatarCard: React.FC<Props> = (props) => {
         padding: 0,
       }}
       statistic={{
-        title: post?.userVO?.userName,
+        title: <Typography.Title level={3}>{post?.title}</Typography.Title>,
         valueRender: () => (
-          <Typography.Text
-            style={{
-              color: 'rgba(0, 0, 0, 0.45)',
-            }}
-          >
-            {dayjs(post.createTime).format('YYYY-MM-DD HH:mm:ss')}
-          </Typography.Text>
+          <Space>
+            <Typography.Text>{post?.userVO?.userName}</Typography.Text>
+            <Divider type={'vertical'} />
+            <Typography.Text
+              style={{
+                color: 'rgba(0, 0, 0, 0.45)',
+              }}
+            >
+              {dayjs(post.createTime).format('YYYY-MM-DD HH:mm:ss')}
+            </Typography.Text>
+          </Space>
         ),
         valueStyle: {
           fontSize: 14,
         },
       }}
-      chart={<Avatar size={48} src={post?.userVO?.userAvatar} alt={post?.userVO?.userName} />}
-      chartPlacement="left"
     />
   );
 };

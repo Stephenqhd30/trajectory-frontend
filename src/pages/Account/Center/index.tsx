@@ -3,7 +3,8 @@ import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { ACCOUNT_TITLE } from '@/constants';
 import {Col, Grid, Row} from 'antd';
 import { useModel } from '@@/exports';
-import { MyFavourPostList, MyPostList, UserCard, MyThumbPostList } from '@/pages/Account/Center/components';
+import { MyFavourPostList, MyPostList, MyThumbPostList } from '@/pages/Account/Center/components';
+import {UserCard} from '@/components';
 
 const { useBreakpoint } = Grid;
 

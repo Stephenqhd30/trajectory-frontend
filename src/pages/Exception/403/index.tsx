@@ -1,7 +1,12 @@
 import { Link } from '@umijs/max';
 import { Button, Result } from 'antd';
+import React from 'react';
 
-const UnAccessiblePage = () => (
+/**
+ * 无权限访问
+ * @constructor
+ */
+const UnAccessiblePage: React.FC = () => (
   <Result
     status="403"
     title="403"

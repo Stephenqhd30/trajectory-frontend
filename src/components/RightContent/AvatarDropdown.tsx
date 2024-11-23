@@ -20,11 +20,12 @@ export const AvatarName = () => {
 
 /**
  * 头像下拉框
- * @param menu menu
  * @constructor
  */
 export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
   const { initialState, setInitialState } = useModel('@@initialState');
+  // 获取当前登录用户的信息
+  const { currentUser } = initialState || {};
   /**
    * 退出登录，并且将当前的 url 保存
    */
@@ -61,8 +62,6 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
     },
     [setInitialState],
   );
-  // 获取当前登录用户的信息
-  const { currentUser } = initialState || {};
 
   // 如果用户没有登录展示一个登录框
   if (!currentUser) {
@@ -101,7 +100,10 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
     >
       <Space>
         {currentUser?.userAvatar ? (
-          <Avatar src={currentUser?.userAvatar} />
+          <Space>
+            <Avatar src={currentUser?.userAvatar} />
+            <span>{currentUser?.userName}</span>
+          </Space>
         ) : (
           <Avatar icon={<UserOutlined />} />
         )}

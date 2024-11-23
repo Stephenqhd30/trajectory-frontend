@@ -7,15 +7,15 @@ import { message } from 'antd';
  * @constructor
  */
 export default () => {
-  const [tagTreeList, setTagTreeList] = useState<API.TagDTO[]>([]);
+  const [tags, setTags] = useState<API.TagDTO[]>([]);
 
   const loadData = async () => {
     try {
       const res = await listTagByTreeUsingGet();
       if (res.code === 0 && res.data) {
-        setTagTreeList(res.data);
+        setTags(res.data);
       } else {
-        setTagTreeList([]);
+        setTags([]);
       }
     } catch (error: any) {
       message.error('获取树形组件失败');
@@ -23,7 +23,7 @@ export default () => {
   };
 
   return {
-    tagTreeList,
+    tags,
     loadData,
   };
 };

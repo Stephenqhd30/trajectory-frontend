@@ -17,12 +17,7 @@ const MdViewer:React.FC<Props> = (props) => {
 
   return (
     <div className="md-viewer">
-      <MdPreview
-        id={id}
-        value={value}
-        previewTheme="vuepress"
-        autoFoldThreshold={200}
-      />
+      <MdPreview id={id} value={value} previewTheme={'vuepress'} autoFoldThreshold={200} />
     </div>
   );
 };
