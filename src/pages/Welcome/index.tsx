@@ -57,7 +57,7 @@ const Welcome: React.FC = () => {
           </ProCard>
         </Col>
         <Col span={isMobile ? 0 : 6}>
-          <ProCard bordered bodyStyle={{ padding: 0, width: 320 }}>
+          <ProCard bordered bodyStyle={{ padding: 0 }}>
             <RecommendUserList />
           </ProCard>
         </Col>

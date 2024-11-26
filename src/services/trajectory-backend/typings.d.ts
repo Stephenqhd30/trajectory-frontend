@@ -242,6 +242,7 @@ declare namespace API {
     editTime?: string;
     id?: number;
     tags?: string[];
+    token?: string;
     updateTime?: string;
     userAvatar?: string;
     userEmail?: string;

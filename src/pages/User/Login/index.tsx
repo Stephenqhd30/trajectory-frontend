@@ -38,7 +38,7 @@ const iconStyles: CSSProperties = {
   color: 'rgba(0, 0, 0, 0.2)',
   fontSize: '18px',
   verticalAlign: 'middle',
-  cursor: 'pote',
+  cursor: 'pointer',
 };
 
 
@@ -66,6 +66,8 @@ const Login: React.FC = () => {
           ...initialState,
           currentUser: res?.data,
         });
+        // 保存token信息
+        localStorage.setItem('token', res?.data?.token || '');
         setRedirected(true); // 设置重定向状态为 true
         message.success('登录成功！');
       } else {
