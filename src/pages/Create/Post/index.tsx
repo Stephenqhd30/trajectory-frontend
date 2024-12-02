@@ -112,7 +112,7 @@ const CreatePostPage: React.FC = () => {
           name="cover"
           label={'封面'}
         />
-        <TagTreeSelect name={'tags'} label={'标签'} />
+        <TagTreeSelect name="tags" label={'标签'} />
       </ProForm>
     </ProCard>
   );

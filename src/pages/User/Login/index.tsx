@@ -67,7 +67,7 @@ const Login: React.FC = () => {
           currentUser: res?.data,
         });
         // 保存token信息
-        localStorage.setItem('token', res?.data?.token || '');
+        localStorage.setItem('trajectory-token', res?.data?.token || '');
         setRedirected(true); // 设置重定向状态为 true
         message.success('登录成功！');
       } else {
