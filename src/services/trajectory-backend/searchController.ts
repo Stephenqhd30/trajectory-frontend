@@ -2,6 +2,21 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
+/** doSearchAll POST /api/es/all */
+export async function doSearchAllUsingPost(
+  body: API.SearchRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseSearchVOObject_>('/api/es/all', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** searchPostVOByPage POST /api/es/search/post/page/vo */
 export async function searchPostVoByPageUsingPost(
   body: API.PostQueryRequest,

@@ -2,11 +2,9 @@ export enum ChartType {
   Line = '折线图',
   Bar = '柱状图',
   Pie = '饼图',
-  Radar = '雷达图',
   Scatter = '散点图',
   Bubble = '气泡图',
   Area = '面积图',
-  Stacked = '堆叠图',
 }
 
 export const chartTypeEnum = {
@@ -22,10 +20,6 @@ export const chartTypeEnum = {
     value: '饼图',
     text: '饼图',
   },
-  [ChartType.Radar]: {
-    value: '雷达图',
-    text: '雷达图',
-  },
   [ChartType.Scatter]: {
     value: '散点图',
     text: '散点图',
@@ -37,9 +31,5 @@ export const chartTypeEnum = {
   [ChartType.Area]: {
     value: '面积图',
     text: '面积图',
-  },
-  [ChartType.Stacked]: {
-    value: '堆叠图',
-    text: '堆叠图',
   },
 };

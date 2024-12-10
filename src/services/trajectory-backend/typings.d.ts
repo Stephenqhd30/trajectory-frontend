@@ -107,6 +107,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseSearchVOObject_ = {
+    code?: number;
+    data?: SearchVOObject_;
+    message?: string;
+  };
+
   type BaseResponseString_ = {
     code?: number;
     data?: string;
@@ -132,6 +138,7 @@ declare namespace API {
   };
 
   type BIResponse = {
+    chartId?: number;
     genChart?: string;
     genResult?: string;
   };
@@ -140,12 +147,14 @@ declare namespace API {
     chartData?: string;
     chartType?: string;
     createTime?: string;
+    executorMessage?: string;
     genChart?: string;
     genResult?: string;
     goal?: string;
     id?: number;
     isDelete?: number;
     name?: string;
+    status?: string;
     updateTime?: string;
     userId?: number;
   };
@@ -168,6 +177,7 @@ declare namespace API {
   type ChartQueryRequest = {
     chartType?: string;
     current?: number;
+    executorMessage?: string;
     goal?: string;
     id?: number;
     name?: string;
@@ -176,26 +186,31 @@ declare namespace API {
     searchText?: string;
     sortField?: string;
     sortOrder?: string;
+    status?: string;
     userId?: number;
   };
 
   type ChartUpdateRequest = {
     chartData?: string;
     chartType?: string;
+    executorMessage?: string;
     goal?: string;
     id?: number;
     name?: string;
+    status?: string;
   };
 
   type ChartVO = {
     chartData?: string;
     chartType?: string;
     createTime?: string;
+    executorMessage?: string;
     genChart?: string;
     genResult?: string;
     goal?: string;
     id?: number;
     name?: string;
+    status?: string;
     updateTime?: string;
     userId?: number;
     userVO?: UserVO;
@@ -455,6 +470,19 @@ declare namespace API {
     updateTime?: string;
     userId?: number;
     userVO?: UserVO;
+  };
+
+  type SearchRequest = {
+    current?: number;
+    pageSize?: number;
+    searchText?: string;
+    sortField?: string;
+    sortOrder?: string;
+    type?: string;
+  };
+
+  type SearchVOObject_ = {
+    dataList?: Record<string, any>[];
   };
 
   type Tag = {
