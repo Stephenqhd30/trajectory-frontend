@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { Col, Empty, Grid, message, Row, Typography } from 'antd';
 import ReactECharts from 'echarts-for-react';
-import { CreateChartForm } from './components';
-import { MdViewer } from '@/components';
+import { CreateChartForm, MdViewer } from '@/components';
 import { GENERATE_TITLE } from '@/constants';
 import { genChartByAiUsingPost } from '@/services/trajectory-backend/chartController';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
@@ -55,7 +54,7 @@ const CreateChart: React.FC = () => {
   };
 
   return (
-    <PageContainer title={GENERATE_TITLE}>
+    <PageContainer breadcrumb={undefined} title={GENERATE_TITLE}>
       <Row gutter={[16, 16]}>
         <Col span={isMobile ? 24 : 12}>
           <ProCard

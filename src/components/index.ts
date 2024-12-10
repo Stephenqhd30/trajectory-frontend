@@ -11,6 +11,7 @@ import { RecommendUser, UserCard } from '@/components/ReUser';
 import { TagTreeSelect } from '@/components/ReTag';
 import { ActionTabbar, PostAvatarCard, PostCard, PostTitleCard } from '@/components/RePost';
 import { ChartAvatarCard } from '@/components/ReChart';
+import { CreateChartForm } from '@/components/ReGenerate';
 
 export {
   Footer,
@@ -28,4 +29,5 @@ export {
   PostAvatarCard,
   PostTitleCard,
   ChartAvatarCard,
+  CreateChartForm,
 };

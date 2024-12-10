@@ -63,14 +63,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
         </Link>
       );
     },
-    actionsRender: (props) => {
-      if (props.isMobile) return [];
-      return [
-        <InfoCircleFilled key="InfoCircleFilled" />,
-        <QuestionCircleFilled key="QuestionCircleFilled" />,
-        <GithubFilled key="GithubFilled" />,
-      ];
-    },
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;

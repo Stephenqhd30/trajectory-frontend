@@ -29,7 +29,11 @@ export default [
     path: '/generate',
     name: '智能分析',
     icon: 'PieChartOutlined',
-    component: './Generate/Chart',
+    routes: [
+      { path: '/generate', redirect: '/generate/analysis' },
+      { name: '智能分析', path: '/generate/analysis', component: './Generate/Analysis' },
+      { name: '生成图表', path: '/generate/chart', component: './Generate/Chart' },
+    ]
   },
   {
     path: '/my/chart',
