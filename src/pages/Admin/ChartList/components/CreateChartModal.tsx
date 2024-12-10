@@ -103,9 +103,6 @@ const CreateChartModal: React.FC<Props> = (props) => {
           <Select.Option value={ChartType.Pie}>
             {chartTypeEnum[ChartType.Pie].text}
           </Select.Option>
-          <Select.Option value={ChartType.Radar}>
-            {chartTypeEnum[ChartType.Radar].text}
-          </Select.Option>
           <Select.Option value={ChartType.Scatter}>
             {chartTypeEnum[ChartType.Scatter].text}
           </Select.Option>
@@ -114,9 +111,6 @@ const CreateChartModal: React.FC<Props> = (props) => {
           </Select.Option>
           <Select.Option value={ChartType.Area}>
             {chartTypeEnum[ChartType.Area].text}
-          </Select.Option>
-          <Select.Option value={ChartType.Stacked}>
-            {chartTypeEnum[ChartType.Stacked].text}
           </Select.Option>
         </Select>
       </ProFormSelect>

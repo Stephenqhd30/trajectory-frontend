@@ -1,12 +1,12 @@
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import '@umijs/max';
-import { Button, message, Popconfirm, Space, Typography } from 'antd';
+import { Button, message, Popconfirm, Space, Tag, Typography } from 'antd';
 import React, { useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import { MdViewer } from '@/components';
 import { deleteChartUsingPost, listChartByPageUsingPost } from '@/services/trajectory-backend/chartController';
 import { CreateChartModal, UpdateChartModal } from '@/pages/Admin/ChartList/components';
 import { chartTypeEnum } from '@/enums/ChartTypeEnum';
+import { ChartStatus, chartStatusEnum } from '@/enums/ChartStatusEnum';
 
 /**
  * 删除节点
@@ -63,6 +63,7 @@ const ChartList: React.FC = () => {
       title: '目标',
       dataIndex: 'goal',
       valueType: 'text',
+      width: 200,
     },
     {
       title: '图表类型',
@@ -72,17 +73,31 @@ const ChartList: React.FC = () => {
     {
       title: '图表数据',
       dataIndex: 'genChart',
-      valueType: 'jsonCode',
       hideInSearch: true,
       hideInForm: true,
+      width: 300,
     },
     {
       title: '分析结论',
       dataIndex: 'genResult',
       hideInSearch: true,
       hideInForm: true,
-      width: 500,
-      render: (_, record) => <MdViewer value={record.genResult as string} />,
+      width: 300,
+    },
+    {
+      title: '图表状态',
+      dataIndex: 'status',
+      valueType: 'select',
+      valueEnum: chartStatusEnum,
+      render: (_, record) => {
+        const status = chartStatusEnum[record.status as ChartStatus];
+        return <Tag color={status.color}>{status.text}</Tag>;
+      },
+    },
+    {
+      title: '执行信息',
+      dataIndex: 'executorMessage',
+      valueType: 'text',
     },
     {
       title: '创建用户id',
