@@ -10,7 +10,6 @@ import {
   ProFormUploadDragger,
 } from '@ant-design/pro-components';
 import { addChartUsingPost } from '@/services/trajectory-backend/chartController';
-import { userRole, UserRoleEnum } from '@/enums/UserRoleEnum';
 import { ChartType, chartTypeEnum } from '@/enums/ChartTypeEnum';
 
 interface Props {
@@ -106,11 +105,8 @@ const CreateChartModal: React.FC<Props> = (props) => {
           <Select.Option value={ChartType.Scatter}>
             {chartTypeEnum[ChartType.Scatter].text}
           </Select.Option>
-          <Select.Option value={ChartType.Bubble}>
-            {chartTypeEnum[ChartType.Bubble].text}
-          </Select.Option>
-          <Select.Option value={ChartType.Area}>
-            {chartTypeEnum[ChartType.Area].text}
+          <Select.Option value={ChartType.KLineChart}>
+            {chartTypeEnum[ChartType.KLineChart].text}
           </Select.Option>
         </Select>
       </ProFormSelect>

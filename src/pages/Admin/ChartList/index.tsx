@@ -62,7 +62,6 @@ const ChartList: React.FC = () => {
       title: '目标',
       dataIndex: 'goal',
       valueType: 'text',
-      width: 200,
     },
     {
       title: '图表类型',
@@ -74,14 +73,12 @@ const ChartList: React.FC = () => {
       dataIndex: 'genChart',
       hideInSearch: true,
       hideInForm: true,
-      width: 300,
     },
     {
       title: '分析结论',
       dataIndex: 'genResult',
       hideInSearch: true,
       hideInForm: true,
-      width: 300,
     },
     {
       title: '图表状态',

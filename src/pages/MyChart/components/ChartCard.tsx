@@ -38,7 +38,7 @@ const ChartCard: React.FC<Props> = (props) => {
         <StatisticCard
           statistic={{
             title: <ChartAvatarCard chart={chart} />,
-            valueRender: () => <MdViewer value={chart.genResult} id={`my-chart-${chart.id}`} />,
+            valueRender: () => undefined,
           }}
           chart={
             <Result
