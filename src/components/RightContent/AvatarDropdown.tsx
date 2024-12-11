@@ -1,6 +1,6 @@
-import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { BarChartOutlined, LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { history, Link, useModel } from '@umijs/max';
-import { Avatar, Button, Space } from 'antd';
+import { Avatar, Button, message, Space } from 'antd';
 import { stringify } from 'querystring';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import React, { useCallback } from 'react';
@@ -30,18 +30,26 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
    * 退出登录，并且将当前的 url 保存
    */
   const loginOut = async () => {
-    await userLogoutUsingPost();
-    const { search, pathname } = window.location;
-    const urlParams = new URL(window.location.href).searchParams;
-    /** 此方法会跳转到 redirect 参数所在的位置 */
-    const redirect = urlParams.get('redirect');
-    if (window.location.pathname !== '/user/login' && !redirect) {
-      history.replace({
-        pathname: '/user/login',
-        search: stringify({
-          redirect: pathname + search,
-        }),
-      });
+    try {
+      const res = await userLogoutUsingPost();
+      const { search, pathname } = window.location;
+      const urlParams = new URL(window.location.href).searchParams;
+      /** 此方法会跳转到 redirect 参数所在的位置 */
+      const redirect = urlParams.get('redirect');
+      if (res.code === 0 && res.data) {
+        if (window.location.pathname !== '/user/login' && !redirect) {
+          history.replace({
+            pathname: '/user/login',
+            search: stringify({
+              redirect: pathname + search,
+            }),
+          });
+        }
+      } else {
+        message.error(`用户退出登录失败${res.message}`);
+      }
+    } catch (error: any) {
+      message.error(`用户退出登录失败${error.message}`);
     }
   };
 
@@ -56,6 +64,9 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
           setInitialState((s) => ({ ...s, currentUser: undefined }));
         });
         loginOut();
+        return;
+      }else if (key === 'chart') {
+        history.push(`/my/${key}`);
         return;
       }
       history.push(`/account/${key}`);
@@ -82,6 +93,11 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
       key: 'settings',
       icon: <SettingOutlined />,
       label: '个人设置',
+    },
+    {
+      key: 'chart',
+      icon: <BarChartOutlined />,
+      label: '我的图表',
     },
     {
       key: 'logout',

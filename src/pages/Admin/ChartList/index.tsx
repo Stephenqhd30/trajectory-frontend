@@ -1,5 +1,4 @@
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
-import '@umijs/max';
 import { Button, message, Popconfirm, Space, Tag, Typography } from 'antd';
 import React, { useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
@@ -167,7 +166,7 @@ const ChartList: React.FC = () => {
   return (
     <>
       <ProTable<API.Chart, API.PageParams>
-        headerTitle={'帖子列表'}
+        headerTitle={'图表查询'}
         actionRef={actionRef}
         rowKey={'id'}
         search={{
@@ -205,7 +204,6 @@ const ChartList: React.FC = () => {
         }}
         columns={columns}
       />
-
       {/*新建表单的Modal框*/}
       {createModalVisible && (
         <CreateChartModal

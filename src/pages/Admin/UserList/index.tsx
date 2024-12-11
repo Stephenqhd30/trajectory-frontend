@@ -1,6 +1,5 @@
 import { DownloadOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
-import '@umijs/max';
 import { Button, message, Popconfirm, Space, Tag, Typography } from 'antd';
 import React, { useRef, useState } from 'react';
 import {
@@ -26,14 +25,18 @@ const handleDelete = async (row: API.DeleteRequest) => {
   const hide = message.loading('正在删除');
   if (!row) return true;
   try {
-    await deleteUserUsingPost({
+    const res = await deleteUserUsingPost({
       id: row.id,
     });
-    hide();
-    message.success('删除成功');
+    if (res.code === 0 && res.data) {
+      message.success('删除成功');
+    } else {
+      message.error(`删除失败${res.message}, 请重试!`);
+    }
   } catch (error: any) {
-    hide();
     message.error(`删除失败${error.message}, 请重试!`);
+  } finally {
+    hide();
   }
 };
 
@@ -60,7 +63,6 @@ const UserList: React.FC = () => {
       const res = await downloadUsingGet({
         responseType: 'blob',
       });
-
       // 创建 Blob 对象
       // @ts-ignore
       const url = window.URL.createObjectURL(new Blob([res]));
@@ -203,9 +205,9 @@ const UserList: React.FC = () => {
   return (
     <>
       <ProTable<API.User, API.PageParams>
-        headerTitle={'查询表格'}
+        headerTitle={'用户查询'}
         actionRef={actionRef}
-        rowKey={'key'}
+        rowKey={'id'}
         search={{
           labelWidth: 120,
         }}

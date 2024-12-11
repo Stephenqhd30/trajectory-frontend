@@ -1,5 +1,4 @@
 import {ActionType, ProColumns, ProTable} from '@ant-design/pro-components';
-import '@umijs/max';
 import {Button, message, Popconfirm, Space, Tag, Typography} from 'antd';
 import React, {useRef, useState} from 'react';
 import {CreatePostModal, UpdatePostModal} from '@/pages/Admin/PostList/components';
@@ -176,7 +175,7 @@ const PostList: React.FC = () => {
   return (
     <>
       <ProTable<API.Post, API.PageParams>
-        headerTitle={'帖子列表'}
+        headerTitle={'文章查询'}
         actionRef={actionRef}
         rowKey={'id'}
         search={{

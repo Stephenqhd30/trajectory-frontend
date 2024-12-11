@@ -1,6 +1,5 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
-import '@umijs/max';
 import { Button, message, Popconfirm, Select, Space, Typography } from 'antd';
 import React, { useRef, useState } from 'react';
 
@@ -152,9 +151,9 @@ const TagList: React.FC = () => {
   return (
     <>
       <ProTable<API.TagVO, API.PageParams>
-        headerTitle={'查询表格'}
+        headerTitle={'标签查询'}
         actionRef={actionRef}
-        rowKey={'key'}
+        rowKey={'id'}
         search={{
           labelWidth: 120,
         }}
