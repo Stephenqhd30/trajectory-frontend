@@ -1,10 +1,9 @@
-import { AvatarDropdown, Footer } from '@/components';
+import { AvatarDropdown, Footer, SearchInput } from '@/components';
 import { history, Link, RunTimeLayoutConfig } from '@umijs/max';
 import React from 'react';
 import Settings from '../config/defaultSettings';
 import { getLoginUserUsingGet } from '@/services/trajectory-backend/userController';
 import { requestConfig } from '@/requestConfig';
-import { GithubFilled, InfoCircleFilled, QuestionCircleFilled } from '@ant-design/icons';
 import { UnAccessiblePage } from '@/pages/Exception';
 
 const loginPath = '/user/login';
@@ -62,6 +61,12 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
           </div>
         </Link>
       );
+    },
+    actionsRender: (props) => {
+      if (props.isMobile) {
+        return [];
+      }
+      return [<SearchInput key={'search'} />];
     },
     footerRender: () => <Footer />,
     onPageChange: () => {

@@ -1,5 +1,5 @@
 import { PageContainer, ProCard } from '@ant-design/pro-components';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ACCOUNT_TITLE } from '@/constants';
 import { BaseView, BindingView, SecurityView } from '@/pages/Account/Settings/components';
 import { Grid } from 'antd';
@@ -14,13 +14,7 @@ const { useBreakpoint } = Grid;
 const Settings: React.FC = () => {
   const { initialState } = useModel("@@initialState");
   const currentUser = initialState?.currentUser || {};
-  const [activeKeyTab, setActiveKeyTab] = useState<string>(() => {
-    return localStorage.getItem('activeKeyTab') || 'base';
-  });
-
-  useEffect(() => {
-    localStorage.setItem('activeKeyTab', activeKeyTab);
-  }, [activeKeyTab]);
+  const [activeKeyTab, setActiveKeyTab] = useState<string>('base');
 
   const screens = useBreakpoint();
   const isMobile = !screens.md;

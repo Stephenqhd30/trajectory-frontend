@@ -42,6 +42,12 @@ export default [
     component: './MyChart',
   },
   {
+    path: '/search',
+    name: '搜索页',
+    icon: 'search',
+    component: './Search',
+  },
+  {
     path: '/account',
     name: '个人页',
     icon: 'user',

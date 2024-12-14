@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from '@@/exports';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
-import { Col, Grid, message, Row, Typography } from 'antd';
-import {MdViewer, PostTitleCard, TableOfContents, UserCard} from '@/components';
-import { getPostVoByIdUsingGet } from '@/services/trajectory-backend/postController';
+import { Col, Grid, message, Row } from 'antd';
+import { MdViewer, PostTitleCard, TableOfContents, UserCard } from '@/components';
+import { searchPostVoByPageUsingPost } from '@/services/trajectory-backend/searchController';
 
 const { useBreakpoint } = Grid;
 
@@ -26,12 +26,11 @@ const PostDetailsPage: React.FC = () => {
   const loadData = async () => {
     setLoading(true);
     try {
-      const res = await getPostVoByIdUsingGet({
-        // @ts-ignore
-        id: id,
+      const res = await searchPostVoByPageUsingPost({
+        id: id as any,
       });
-      if (res.code === 0 && res.data) {
-        setPost(res.data);
+      if (res.code === 0 && res?.data?.records) {
+        setPost(res?.data?.records[0] || {});
       } else {
         setPost({});
       }
@@ -51,9 +50,7 @@ const PostDetailsPage: React.FC = () => {
       <Row gutter={[16, 16]} align={'top'}>
         <Col span={isMobile ? 24 : 18}>
           <ProCard title={<PostTitleCard post={post} />} gutter={[16, 16]}>
-            <Typography.Paragraph>
-              <MdViewer key={post?.id} value={post.content} id={editorId as string} />
-            </Typography.Paragraph>
+            <MdViewer key={post?.id} value={post?.content} id={editorId as string} />
           </ProCard>
         </Col>
         <Col span={isMobile ? 0 : 6}>

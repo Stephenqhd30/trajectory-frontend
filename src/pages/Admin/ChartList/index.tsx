@@ -52,6 +52,7 @@ const ChartList: React.FC = () => {
       dataIndex: 'id',
       valueType: 'text',
       hideInForm: true,
+      hideInTable: true,
     },
     {
       title: '名称',

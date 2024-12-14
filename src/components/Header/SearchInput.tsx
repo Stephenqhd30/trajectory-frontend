@@ -1,13 +1,21 @@
-import React from 'react';
-import { SearchOutlined } from '@ant-design/icons';
 import { Input, theme } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { useState } from 'react';
+import { SearchResource } from '@/enums/SearchResourceEnum';
+import { history } from '@umijs/max';
+
+const initialSearchParams: API.SearchRequest = {
+  searchText: '',
+  type: SearchResource.POST,
+};
 
 /**
- * 搜索框
+ * 通用搜索栏
  * @constructor
  */
-const SearchInput: React.FC = () => {
+const SearchInput = () => {
   const { token } = theme.useToken();
+  const [searchParams, setSearchParams] = useState<API.SearchRequest>(initialSearchParams);
   return (
     <div
       key="SearchOutlined"
@@ -26,7 +34,6 @@ const SearchInput: React.FC = () => {
         style={{
           borderRadius: 4,
           marginInlineEnd: 12,
-          backgroundColor: token.colorBgTextHover,
         }}
         prefix={
           <SearchOutlined
@@ -35,8 +42,12 @@ const SearchInput: React.FC = () => {
             }}
           />
         }
-        placeholder="搜索方案"
+        placeholder="搜索"
         variant="borderless"
+        onChange={(e) => setSearchParams({ ...searchParams, searchText: e.target.value })}
+        onPressEnter={() => {
+          history.push(`/search?type=${searchParams.type}&searchText=${searchParams.searchText}`);
+        }}
       />
     </div>
   );

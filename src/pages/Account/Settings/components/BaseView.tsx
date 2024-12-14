@@ -88,7 +88,6 @@ const BaseView: React.FC<BaseViewProps> = (props) => {
   return (
     <ProCard
       title="更新个人基本信息"
-      extra={isMobile ? null : new Date().toLocaleDateString()}
       headerBordered
       bodyStyle={{ padding: isMobile ? '4px' : '24px' }}
       headStyle={{ padding: isMobile ? '4px' : '24px' }}
