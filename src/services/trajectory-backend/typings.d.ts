@@ -490,6 +490,7 @@ declare namespace API {
 
   type SearchVOObject_ = {
     dataList?: Record<string, any>[];
+    total?: number;
   };
 
   type Tag = {

@@ -17,6 +17,21 @@ export async function doSearchAllUsingPost(
   });
 }
 
+/** searchChartVOByPage POST /api/es/search/chart/page/vo */
+export async function searchChartVoByPageUsingPost(
+  body: API.ChartQueryRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponsePageChartVO_>('/api/es/search/chart/page/vo', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** searchPostVOByPage POST /api/es/search/post/page/vo */
 export async function searchPostVoByPageUsingPost(
   body: API.PostQueryRequest,
