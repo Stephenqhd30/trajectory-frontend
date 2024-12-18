@@ -1,4 +1,4 @@
-import { AvatarDropdown, Footer, SearchInput } from '@/components';
+import { AvatarDropdown, Footer } from '@/components';
 import { history, Link, RunTimeLayoutConfig } from '@umijs/max';
 import React from 'react';
 import Settings from '../config/defaultSettings';
@@ -61,12 +61,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
           </div>
         </Link>
       );
-    },
-    actionsRender: (props) => {
-      if (props.isMobile) {
-        return [];
-      }
-      return [<SearchInput key={'search'} />];
     },
     footerRender: () => <Footer />,
     onPageChange: () => {

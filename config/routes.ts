@@ -46,6 +46,7 @@ export default [
     name: '搜索页',
     icon: 'search',
     component: './Search',
+    hideInMenu: true,
   },
   {
     path: '/account',

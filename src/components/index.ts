@@ -4,18 +4,19 @@
  * 目的是统一管理对外输出的组件，方便分类
  */
 import Footer from './Footer';
-import { SearchInput } from '@/components/Header';
+import { HeaderItem, SearchInput } from '@/components/Header';
 import { AvatarDropdown, AvatarName } from './RightContent/AvatarDropdown';
 import { MdViewer, MyMdEditor, TableOfContents } from '@/components/Markdown';
-import { RecommendUser, UserCard } from '@/components/ReUser';
+import { RecommendUser, SearchUserCard, UserAvatarCard, UserCard } from '@/components/ReUser';
 import { TagTreeSelect } from '@/components/ReTag';
 import { ActionTabbar, PostAvatarCard, PostCard, PostTitleCard } from '@/components/RePost';
-import { ChartAvatarCard } from '@/components/ReChart';
+import { ChartAvatarCard, ChartCard } from '@/components/ReChart';
 import { CreateChartForm } from '@/components/ReGenerate';
 
 export {
   Footer,
   SearchInput,
+  HeaderItem,
   AvatarDropdown,
   AvatarName,
   MdViewer,
@@ -29,5 +30,8 @@ export {
   PostAvatarCard,
   PostTitleCard,
   ChartAvatarCard,
+  ChartCard,
   CreateChartForm,
+  UserAvatarCard,
+  SearchUserCard,
 };

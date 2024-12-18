@@ -16,7 +16,7 @@ const Settings: ProLayoutProps & {
   fixSiderbar: true,
   splitMenus: true,
   siderMenuType: 'sub',
-  title: '轨迹智能BI平台',
+  title: '轨迹',
   pwa: true,
   logo: 'https://butterfly-1318299170.cos.ap-shanghai.myqcloud.com/logo/trajectory/logo.svg',
   iconfontUrl: '',

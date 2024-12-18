@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { ActionType, PageContainer, ProList } from '@ant-design/pro-components';
 import { listMyChartVoByPageUsingPost } from '@/services/trajectory-backend/chartController';
 import { MY_CHART_TITLE } from '@/constants';
-import { ChartCard } from '@/pages/MyChart/components';
+import { ChartCard } from '@/components';
 import { message } from 'antd';
 
 /**

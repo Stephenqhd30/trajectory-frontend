@@ -1,11 +1,12 @@
 export const STEPHEN_AUTHOR = 'StephenQiu';
 export const STEPHEN_BLOG = 'https://blog.stephenqiu.icu/';
 export const STEPHEN_GITHUB = 'https://github.com/Stephenqhd30';
-export const STEPHEN_TITLE = '轨迹智能BI平台';
+export const STEPHEN_TITLE = '轨迹';
 export const GENERATE_TITLE = '我会发着呆,然后忘记你,接着紧紧闭上眼';
+export const SEARCH_TITLE = '想着那一天会有人代替,让我不在想念你';
 export const MY_CHART_TITLE = "想要对你说的不敢说的爱，会不会有人可以明白";
 export const STEPHEN_SUBTITLE = '想要对你说的不敢说的爱，会不会有人可以明白';
-export const STEPHEN_DEFAULT_MESSAGE = '轨迹智能BI平台';
+export const STEPHEN_DEFAULT_MESSAGE = '轨迹';
 export const BASE_URL = 'http://localhost:8080';
 export const PRODUCTION_URL = 'http://121.36.17.18:8101';
 export const BACKGROUND_IMAGE = "https://butterfly-1318299170.cos.ap-shanghai.myqcloud.com/Images/Blog/Background/6.webp"
