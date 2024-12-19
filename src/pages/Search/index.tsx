@@ -58,7 +58,7 @@ const SearchPage: React.FC = () => {
     <PageContainer breadcrumb={undefined} title={SEARCH_TITLE}>
       <Search
         size={'large'}
-        value={searchParams.searchText}
+        defaultValue={searchParams.searchText}
         style={{ marginBottom: 16 }}
         placeholder="请输入关键词"
         onSearch={(searchText) => handleSearchParamsChange({ searchText, current: 1 })}
