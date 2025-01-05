@@ -52,7 +52,7 @@ const SearchPage: React.FC = () => {
       current: Number(params.get('current')) || 1,
       pageSize: Number(params.get('pageSize')) || 10,
     });
-  }, [location.search]);
+  }, [location.search || undefined]);
 
   return (
     <PageContainer breadcrumb={undefined} title={SEARCH_TITLE}>
