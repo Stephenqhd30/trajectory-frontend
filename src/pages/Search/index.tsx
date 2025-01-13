@@ -88,7 +88,7 @@ const SearchPage: React.FC = () => {
           itemLayout="vertical"
           rowKey={'id'}
           request={async (params, sort, filter) => {
-            const sortField = 'createTime';
+            const sortField = 'updateTime';
             const sortOrder = sort?.[sortField] ?? 'descend';
             const { data, code } = await doSearchAllUsingPost({
               ...params,

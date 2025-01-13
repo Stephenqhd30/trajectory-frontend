@@ -68,7 +68,6 @@ const Welcome: React.FC = () => {
               }}
               pagination={{
                 pageSize: 10,
-                showQuickJumper: true,
                 responsive: true,
                 current: searchParams.current,
                 onChange: (page) => setSearchParams((prev) => ({ ...prev, current: page })),
@@ -77,7 +76,7 @@ const Welcome: React.FC = () => {
               itemLayout="vertical"
               rowKey={'id'}
               request={async (params, sort, filter) => {
-                const sortField = 'createTime';
+                const sortField = 'updateTime';
                 const sortOrder = sort?.[sortField] ?? 'descend';
                 const { data, code } = await doSearchAllUsingPost({
                   ...params,
