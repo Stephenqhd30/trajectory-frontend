@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { ProCard, ProForm, ProFormText, ProFormUploadDragger } from '@ant-design/pro-components';
+import {
+  PageContainer,
+  ProCard,
+  ProForm,
+  ProFormText,
+  ProFormUploadDragger,
+} from '@ant-design/pro-components';
 import { message, UploadProps } from 'antd';
 import { MyMdEditor, TagTreeSelect } from '@/components';
 import { addPostUsingPost } from '@/services/trajectory-backend/postController';
@@ -79,42 +85,44 @@ const CreatePostPage: React.FC = () => {
     },
   };
   return (
-    <ProCard title={'创建帖子'} extra={new Date().toLocaleDateString()}>
-      <ProForm<API.PostVO>
-        onFinish={async (values) => {
-          await handleCreatePost({
-            ...values,
-            cover,
-            content,
-          });
-        }}
-        submitter={{
-          searchConfig: {
-            submitText: '新建帖子',
-            resetText: '取消',
-          },
-        }}
-      >
-        <ProFormText name="title" label="标题" />
-        <ProFormText name="content" label="内容">
-          <MyMdEditor
-            value={content}
-            onChange={(value) => setContent(value)}
-            placeholder={'请填写内容'}
-          />
-        </ProFormText>
-        <ProFormUploadDragger
-          title={'上传帖子封面'}
-          max={1}
-          fieldProps={{
-            ...uploadProps,
+    <PageContainer title={false} breadcrumb={undefined}>
+      <ProCard title={'创建帖子'}>
+        <ProForm<API.PostVO>
+          onFinish={async (values) => {
+            await handleCreatePost({
+              ...values,
+              cover,
+              content,
+            });
           }}
-          name="cover"
-          label={'封面'}
-        />
-        <TagTreeSelect name="tags" label={'标签'} />
-      </ProForm>
-    </ProCard>
+          submitter={{
+            searchConfig: {
+              submitText: '新建帖子',
+              resetText: '取消',
+            },
+          }}
+        >
+          <ProFormText name="title" label="标题" />
+          <ProFormText name="content" label="内容">
+            <MyMdEditor
+              value={content}
+              onChange={(value) => setContent(value)}
+              placeholder={'请填写内容'}
+            />
+          </ProFormText>
+          <ProFormUploadDragger
+            title={'上传帖子封面'}
+            max={1}
+            fieldProps={{
+              ...uploadProps,
+            }}
+            name="cover"
+            label={'封面'}
+          />
+          <TagTreeSelect name="tags" label={'标签'} />
+        </ProForm>
+      </ProCard>
+    </PageContainer>
   );
 };
 

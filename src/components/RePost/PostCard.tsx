@@ -22,7 +22,7 @@ const PostCard: React.FC<Props> = ({post}) => {
     <ProCard
       title={<PostAvatarCard key={post.id} post={post} />}
       headStyle={{ padding: 4 }}
-      bodyStyle={{ padding: isMobile ? 4 : 16, paddingTop: 0 }}
+      bodyStyle={{ paddingTop: 0 }}
     >
       <Row>
         <Col span={isMobile ? 24 : post?.cover ? 18 : 24}>

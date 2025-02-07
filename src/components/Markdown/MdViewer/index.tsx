@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.less';
+import 'md-editor-rt/lib/style.css';
 import { MdPreview } from 'md-editor-rt';
 
 interface Props {
@@ -17,7 +18,7 @@ const MdViewer:React.FC<Props> = (props) => {
 
   return (
     <div className="md-viewer">
-      <MdPreview id={id} value={value} previewTheme={'vuepress'} autoFoldThreshold={200} />
+      <MdPreview id={id} value={value} autoFoldThreshold={200} />
     </div>
   );
 };

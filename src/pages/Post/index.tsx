@@ -49,7 +49,7 @@ const PostDetailsPage: React.FC = () => {
     <PageContainer header={{ title: '' }}>
       <Row gutter={[16, 16]} align={'top'}>
         <Col span={isMobile ? 24 : 18}>
-          <ProCard title={<PostTitleCard post={post} />}>
+          <ProCard title={<PostTitleCard post={post} />} bodyStyle={{ padding: 0 }}>
             <MdViewer key={post?.id} value={post?.content} id={editorId as string} />
           </ProCard>
         </Col>

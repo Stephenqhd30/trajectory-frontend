@@ -139,7 +139,6 @@ const MyMdEditor: React.FC<Props> = (props) => {
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        previewTheme="vuepress"
         onGetCatalog={setList}
         onUploadImg={uploadImages}
         toolbarsExclude={['github', 'htmlPreview', 'prettier']}
