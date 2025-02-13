@@ -17,13 +17,14 @@ const PostAvatarCard: React.FC<Props> = (props) => {
   return (
     <StatisticCard
       bodyStyle={{
-        padding: 0,
+        padding: 4,
       }}
       statistic={{
         title: post?.userVO?.userName,
         valueRender: () => (
           <Typography.Text
             style={{
+              fontWeight: 500,
               color: 'rgba(0, 0, 0, 0.45)',
             }}
           >
@@ -31,10 +32,10 @@ const PostAvatarCard: React.FC<Props> = (props) => {
           </Typography.Text>
         ),
         valueStyle: {
-          fontSize: 14,
+          fontSize: 13,
         },
       }}
-      chart={<Avatar size={48} src={post?.userVO?.userAvatar} alt={post?.userVO?.userName} />}
+      chart={<Avatar size={40} src={post?.userVO?.userAvatar} alt={post?.userVO?.userName} />}
       chartPlacement="left"
     />
   );
