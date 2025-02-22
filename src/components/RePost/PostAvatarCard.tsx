@@ -2,6 +2,10 @@ import React from 'react';
 import { StatisticCard } from '@ant-design/pro-components';
 import { Avatar, Typography } from 'antd';
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+// 使用 relativeTime 插件
+dayjs.extend(relativeTime);
 
 interface Props {
   post: API.PostVO;
@@ -17,7 +21,7 @@ const PostAvatarCard: React.FC<Props> = (props) => {
   return (
     <StatisticCard
       bodyStyle={{
-        padding: 4,
+        padding: 0,
       }}
       statistic={{
         title: post?.userVO?.userName,
@@ -28,11 +32,13 @@ const PostAvatarCard: React.FC<Props> = (props) => {
               color: 'rgba(0, 0, 0, 0.45)',
             }}
           >
-            {dayjs(post.createTime).format('YYYY-MM-DD HH:mm:ss')}
+            <Typography.Text type="secondary">
+              {dayjs(post?.updateTime).fromNow()}
+            </Typography.Text>
           </Typography.Text>
         ),
         valueStyle: {
-          fontSize: 13,
+          fontSize: 12,
         },
       }}
       chart={<Avatar size={40} src={post?.userVO?.userAvatar} alt={post?.userVO?.userName} />}

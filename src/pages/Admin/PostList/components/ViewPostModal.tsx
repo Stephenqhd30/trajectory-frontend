@@ -31,6 +31,7 @@ const ViewPostModal: React.FC<Props> = (props) => {
     >
       <ProCard
         bodyStyle={{ padding: 0 }}
+        headStyle={{ padding: 0 }}
         title={<Typography.Title level={3}>{post?.title}</Typography.Title>}
       >
         <MdViewer key={post?.id} value={post.content} />

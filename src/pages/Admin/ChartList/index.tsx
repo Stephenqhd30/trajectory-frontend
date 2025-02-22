@@ -2,8 +2,11 @@ import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, message, Popconfirm, Space, Tag, Typography } from 'antd';
 import React, { useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import { deleteChartUsingPost, listChartByPageUsingPost } from '@/services/trajectory-backend/chartController';
-import { CreateChartModal, UpdateChartModal } from '@/pages/Admin/ChartList/components';
+import {
+  deleteChartUsingPost,
+  listChartByPageUsingPost, listChartVoByPageUsingPost
+} from '@/services/trajectory-backend/chartController';
+import {CreateChartModal, UpdateChartModal, ViewChartModal} from '@/pages/Admin/ChartList/components';
 import { chartTypeEnum } from '@/enums/ChartTypeEnum';
 import { ChartStatus, chartStatusEnum } from '@/enums/ChartStatusEnum';
 
@@ -40,9 +43,11 @@ const ChartList: React.FC = () => {
   const [createModalVisible, setCreateModalVisible] = useState<boolean>(false);
   // 更新窗口的Modal框
   const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
+  // 查看信息Modal框
+  const [viewModalVisible, setViewModalVisible] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
   // 当前用户的所点击的数据
-  const [currentRow, setCurrentRow] = useState<API.Chart>();
+  const [currentRow, setCurrentRow] = useState<API.ChartVO>();
   /**
    * 表格列数据
    */
@@ -74,12 +79,14 @@ const ChartList: React.FC = () => {
       dataIndex: 'genChart',
       hideInSearch: true,
       hideInForm: true,
+      hideInTable: true,
     },
     {
       title: '分析结论',
       dataIndex: 'genResult',
       hideInSearch: true,
       hideInForm: true,
+      hideInTable: true,
     },
     {
       title: '图表状态',
@@ -109,7 +116,6 @@ const ChartList: React.FC = () => {
       valueType: 'dateTime',
       hideInSearch: true,
       hideInForm: true,
-      hideInTable: true,
     },
     {
       title: '更新时间',
@@ -118,7 +124,6 @@ const ChartList: React.FC = () => {
       valueType: 'dateTime',
       hideInSearch: true,
       hideInForm: true,
-      hideInTable: true,
     },
     {
       title: '操作',
@@ -126,6 +131,16 @@ const ChartList: React.FC = () => {
       valueType: 'option',
       render: (_, record) => (
         <Space size={'middle'}>
+          <Typography.Link
+            key="info"
+            onClick={() => {
+              setViewModalVisible(true);
+              setCurrentRow(record);
+              actionRef.current?.reload();
+            }}
+          >
+            查看
+          </Typography.Link>
           <Typography.Link
             key="update"
             onClick={() => {
@@ -163,7 +178,7 @@ const ChartList: React.FC = () => {
   ];
   return (
     <>
-      <ProTable<API.Chart, API.PageParams>
+      <ProTable<API.ChartVO, API.PageParams>
         headerTitle={'图表查询'}
         actionRef={actionRef}
         rowKey={'id'}
@@ -187,7 +202,7 @@ const ChartList: React.FC = () => {
         request={async (params, sort, filter) => {
           const sortField = Object.keys(sort)?.[0];
           const sortOrder = sort?.[sortField] ?? undefined;
-          const { data, code } = await listChartByPageUsingPost({
+          const { data, code } = await listChartVoByPageUsingPost({
             ...params,
             ...filter,
             sortField,
@@ -227,6 +242,20 @@ const ChartList: React.FC = () => {
             setUpdateModalVisible(false);
             actionRef.current?.reload();
           }}
+        />
+      )}
+      {/*查看表单的Modal框*/}
+      {viewModalVisible && (
+        <ViewChartModal
+          onCancel={() => {
+            setViewModalVisible(false);
+          }}
+          visible={viewModalVisible}
+          onSubmit={async () => {
+            setViewModalVisible(false);
+            actionRef.current?.reload();
+          }}
+          chart={currentRow as API.ChartVO}
         />
       )}
     </>

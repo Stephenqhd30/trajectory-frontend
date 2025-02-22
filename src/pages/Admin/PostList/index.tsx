@@ -40,7 +40,7 @@ const PostList: React.FC = () => {
   const [createModalVisible, setCreateModalVisible] = useState<boolean>(false);
   // 更新窗口的Modal框
   const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
-  // 查看帖子信息Modal框
+  // 查看信息Modal框
   const [viewModalVisible, setViewModalVisible] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
   // 当前用户的所点击的数据
@@ -116,7 +116,6 @@ const PostList: React.FC = () => {
       dataIndex: 'createTime',
       valueType: 'dateTime',
       hideInSearch: true,
-      hideInForm: true,
     },
     {
       title: '更新时间',
@@ -125,7 +124,6 @@ const PostList: React.FC = () => {
       valueType: 'dateTime',
       hideInSearch: true,
       hideInForm: true,
-      hideInTable: true,
     },
     {
       title: '操作',

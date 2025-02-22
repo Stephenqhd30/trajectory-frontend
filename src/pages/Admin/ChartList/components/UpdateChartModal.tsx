@@ -105,12 +105,6 @@ const UpdateChartModal: React.FC<Props> = (props) => {
           <Select.Option value={ChartType.Scatter}>
             {chartTypeEnum[ChartType.Scatter].text}
           </Select.Option>
-          <Select.Option value={ChartType.Bubble}>
-            {chartTypeEnum[ChartType.Bubble].text}
-          </Select.Option>
-          <Select.Option value={ChartType.Area}>
-            {chartTypeEnum[ChartType.Area].text}
-          </Select.Option>
         </Select>
       </ProFormSelect>
       <ProFormUploadDragger max={1} name="file" label="上传CSV文件" />
