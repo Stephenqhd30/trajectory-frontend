@@ -7,7 +7,7 @@ import Footer from './Footer';
 import { HeaderItem, SearchInput } from '@/components/Header';
 import { AvatarDropdown, AvatarName } from './RightContent/AvatarDropdown';
 import { MdViewer, MdEditor } from '@/components/Markdown';
-import { RecommendUser, SearchUserCard, UserAvatarCard, UserCard } from '@/components/ReUser';
+import { SearchUserCard, UserAvatarCard, UserCard } from '@/components/ReUser';
 import { TagTreeSelect } from '@/components/ReTag';
 import { ActionTabbar, PostAvatarCard, PostCard, PostTitleCard } from '@/components/RePost';
 import { ChartAvatarCard, ChartCard } from '@/components/ReChart';
@@ -24,7 +24,6 @@ export {
   TagTreeSelect,
   PostCard,
   ActionTabbar,
-  RecommendUser,
   UserCard,
   PostAvatarCard,
   PostTitleCard,

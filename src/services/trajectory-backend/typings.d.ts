@@ -29,12 +29,6 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponseListUserVO_ = {
-    code?: number;
-    data?: UserVO[];
-    message?: string;
-  };
-
   type BaseResponseLoginUserVO_ = {
     code?: number;
     data?: LoginUserVO;
@@ -71,6 +65,18 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponsePagePostComment_ = {
+    code?: number;
+    data?: PagePostComment_;
+    message?: string;
+  };
+
+  type BaseResponsePagePostCommentVO_ = {
+    code?: number;
+    data?: PagePostCommentVO_;
+    message?: string;
+  };
+
   type BaseResponsePagePostVO_ = {
     code?: number;
     data?: PagePostVO_;
@@ -98,6 +104,12 @@ declare namespace API {
   type BaseResponsePageUserVO_ = {
     code?: number;
     data?: PageUserVO_;
+    message?: string;
+  };
+
+  type BaseResponsePostCommentVO_ = {
+    code?: number;
+    data?: PostCommentVO;
     message?: string;
   };
 
@@ -239,6 +251,11 @@ declare namespace API {
     id?: number;
   };
 
+  type getPostCommentVOByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
   type getPostVOByIdUsingGETParams = {
     /** id */
     id?: number;
@@ -314,6 +331,32 @@ declare namespace API {
     orders?: OrderItem[];
     pages?: number;
     records?: Post[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PagePostComment_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: PostComment[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PagePostCommentVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: PostCommentVO[];
     searchCount?: boolean;
     size?: number;
     total?: number;
@@ -403,6 +446,75 @@ declare namespace API {
     cover?: string;
     tags?: string[];
     title?: string;
+  };
+
+  type PostComment = {
+    content?: string;
+    createTime?: string;
+    id?: number;
+    isDelete?: number;
+    postId?: number;
+    rootId?: number;
+    thumbCount?: number;
+    toCommentId?: number;
+    toUid?: number;
+    userId?: number;
+  };
+
+  type PostCommentAddRequest = {
+    content?: string;
+    postId?: number;
+    rootId?: number;
+    toCommentId?: number;
+    toUid?: number;
+    userId?: number;
+  };
+
+  type PostCommentEditRequest = {
+    content?: string;
+    id?: number;
+    postId?: number;
+    rootId?: number;
+    toCommentId?: number;
+    toUid?: number;
+    userId?: number;
+  };
+
+  type PostCommentQueryRequest = {
+    content?: string;
+    current?: number;
+    id?: number;
+    notId?: number;
+    pageSize?: number;
+    postId?: number;
+    rootId?: number;
+    searchText?: string;
+    sortField?: string;
+    sortOrder?: string;
+    toCommentId?: number;
+    toUid?: number;
+    userId?: number;
+  };
+
+  type PostCommentUpdateRequest = {
+    content?: string;
+    id?: number;
+    postId?: number;
+    rootId?: number;
+    toCommentId?: number;
+    toUid?: number;
+    userId?: number;
+  };
+
+  type PostCommentVO = {
+    content?: string;
+    id?: number;
+    postId?: number;
+    rootId?: number;
+    toCommentId?: number;
+    toUid?: number;
+    userId?: number;
+    userVO?: UserVO;
   };
 
   type PostEditRequest = {
@@ -605,14 +717,6 @@ declare namespace API {
   type UserLoginRequest = {
     userAccount?: string;
     userPassword?: string;
-  };
-
-  type UserMatchRequest = {
-    current?: number;
-    number?: number;
-    pageSize?: number;
-    sortField?: string;
-    sortOrder?: string;
   };
 
   type UserQueryRequest = {

@@ -7,6 +7,7 @@ import * as searchController from './searchController';
 import * as excelController from './excelController';
 import * as fileController from './fileController';
 import * as postController from './postController';
+import * as postCommentController from './postCommentController';
 import * as postFavourController from './postFavourController';
 import * as postThumbController from './postThumbController';
 import * as tagController from './tagController';
@@ -17,6 +18,7 @@ export default {
   excelController,
   fileController,
   postController,
+  postCommentController,
   postFavourController,
   postThumbController,
   tagController,
