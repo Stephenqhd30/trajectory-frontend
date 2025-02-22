@@ -1,7 +1,7 @@
 import {ActionType, ProColumns, ProTable} from '@ant-design/pro-components';
 import {Button, message, Popconfirm, Space, Tag, Typography} from 'antd';
 import React, {useRef, useState} from 'react';
-import {CreatePostModal, UpdatePostModal} from '@/pages/Admin/PostList/components';
+import { CreatePostModal, UpdatePostModal, ViewPostModal } from '@/pages/Admin/PostList/components';
 import {deletePostUsingPost, listPostByPageUsingPost} from '@/services/trajectory-backend/postController';
 import {PlusOutlined} from '@ant-design/icons';
 import {TagTreeSelect} from '@/components';
@@ -24,7 +24,6 @@ const handleDelete = async (row: API.DeleteRequest) => {
     } else {
       message.error(`删除失败${res.message}, 请重试!`);
     }
-
   } catch (error: any) {
     message.error(`删除失败${error.message}, 请重试!`);
   } finally {
@@ -41,6 +40,8 @@ const PostList: React.FC = () => {
   const [createModalVisible, setCreateModalVisible] = useState<boolean>(false);
   // 更新窗口的Modal框
   const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
+  // 查看帖子信息Modal框
+  const [viewModalVisible, setViewModalVisible] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
   // 当前用户的所点击的数据
   const [currentRow, setCurrentRow] = useState<API.Post>();
@@ -54,7 +55,6 @@ const PostList: React.FC = () => {
       dataIndex: 'id',
       valueType: 'text',
       hideInForm: true,
-      hideInTable: true,
     },
     {
       title: '标题',
@@ -65,14 +65,7 @@ const PostList: React.FC = () => {
       title: '内容',
       dataIndex: 'content',
       valueType: 'text',
-      width: 500,
-      render: (_, record) => {
-        return (
-          <Typography.Paragraph ellipsis={{ rows: 5, expanded: false, expandable: false }}>
-            {record.content}
-          </Typography.Paragraph>
-        );
-      },
+      hideInTable: true,
     },
     {
       title: '封面',
@@ -101,11 +94,15 @@ const PostList: React.FC = () => {
       render: (_, record) => {
         if (record.tags) {
           const tagList = JSON.parse(record.tags as string);
-          return tagList.map((tag) => <Tag key={tag} color={'blue'}>{tag}</Tag>);
+          return tagList.map((tag) => (
+            <Tag key={tag} color={'blue'}>
+              {tag}
+            </Tag>
+          ));
         }
         return <Tag>{TAG_EMPTY}</Tag>;
       },
-      renderFormItem: () => <TagTreeSelect name={'tags'}/>,
+      renderFormItem: () => <TagTreeSelect name={'tags'} />,
     },
     {
       title: '创建用户id',
@@ -120,7 +117,6 @@ const PostList: React.FC = () => {
       valueType: 'dateTime',
       hideInSearch: true,
       hideInForm: true,
-      hideInTable: true,
     },
     {
       title: '更新时间',
@@ -137,6 +133,16 @@ const PostList: React.FC = () => {
       valueType: 'option',
       render: (_, record) => (
         <Space size={'middle'}>
+          <Typography.Link
+            key="info"
+            onClick={() => {
+              setViewModalVisible(true);
+              setCurrentRow(record);
+              actionRef.current?.reload();
+            }}
+          >
+            查看
+          </Typography.Link>
           <Typography.Link
             key="update"
             onClick={() => {
@@ -175,7 +181,7 @@ const PostList: React.FC = () => {
   return (
     <>
       <ProTable<API.Post, API.PageParams>
-        headerTitle={'文章查询'}
+        headerTitle={'帖子列表'}
         actionRef={actionRef}
         rowKey={'id'}
         search={{
@@ -191,7 +197,7 @@ const PostList: React.FC = () => {
                 setCreateModalVisible(true);
               }}
             >
-               新建
+              新建
             </Button>
           </Space>,
         ]}
@@ -239,6 +245,20 @@ const PostList: React.FC = () => {
             setUpdateModalVisible(false);
             actionRef.current?.reload();
           }}
+        />
+      )}
+      {/*查看表单的Modal框*/}
+      {viewModalVisible && (
+        <ViewPostModal
+          onCancel={() => {
+            setViewModalVisible(false);
+          }}
+          visible={viewModalVisible}
+          onSubmit={async () => {
+            setViewModalVisible(false);
+            actionRef.current?.reload();
+          }}
+          post={currentRow as API.PostVO}
         />
       )}
     </>

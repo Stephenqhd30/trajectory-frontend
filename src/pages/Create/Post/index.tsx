@@ -7,7 +7,7 @@ import {
   ProFormUploadDragger,
 } from '@ant-design/pro-components';
 import { message, UploadProps } from 'antd';
-import { MyMdEditor, TagTreeSelect } from '@/components';
+import { MdEditor, TagTreeSelect } from '@/components';
 import { addPostUsingPost } from '@/services/trajectory-backend/postController';
 import { history } from '@umijs/max';
 import { uploadFileUsingPost } from '@/services/trajectory-backend/fileController';
@@ -104,10 +104,9 @@ const CreatePostPage: React.FC = () => {
         >
           <ProFormText name="title" label="标题" />
           <ProFormText name="content" label="内容">
-            <MyMdEditor
+            <MdEditor
               value={content}
               onChange={(value) => setContent(value)}
-              placeholder={'请填写内容'}
             />
           </ProFormText>
           <ProFormUploadDragger
