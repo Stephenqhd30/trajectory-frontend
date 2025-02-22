@@ -1,5 +1,4 @@
 import MdViewer from '@/components/Markdown/MdViewer';
-import MyMdEditor from '@/components/Markdown/MyMdEditor';
-import TableOfContents from '@/components/Markdown/TableOfContents';
+import MdEditor from '@/components/Markdown/MdEditor';
 
-export { MyMdEditor, MdViewer, TableOfContents };
+export { MdEditor, MdViewer };
