@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { Col, Empty, Grid, message, Row, Typography } from 'antd';
