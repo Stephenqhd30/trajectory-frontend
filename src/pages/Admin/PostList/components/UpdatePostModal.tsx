@@ -8,7 +8,7 @@ import {
 import { message, UploadProps } from 'antd';
 import React, { useState } from 'react';
 import { updatePostUsingPost } from '@/services/trajectory-backend/postController';
-import { MdEditor, TagTreeSelect } from '@/components';
+import { MdEditor } from '@/components';
 import { uploadFileUsingPost } from '@/services/trajectory-backend/fileController';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 
@@ -49,7 +49,6 @@ const UpdatePostModal: React.FC<Props> = (props) => {
   const [cover, setCover] = useState<any>();
   // 帖子内容
   const [content, setContent] = useState<string>(oldData?.content ?? '');
-
   const [form] = ProForm.useForm<API.PostUpdateRequest>();
   /**
    * 上传文章封面
@@ -86,7 +85,6 @@ const UpdatePostModal: React.FC<Props> = (props) => {
   if (!oldData) {
     return null;
   }
-
   return (
     <ModalForm<API.PostUpdateRequest>
       title={'更新帖子信息'}
@@ -99,7 +97,6 @@ const UpdatePostModal: React.FC<Props> = (props) => {
           id: oldData.id,
           cover,
           content,
-          tags: Array.isArray(values.tags) ? values.tags : JSON.parse(values.tags as any),
         });
         if (success) {
           onSubmit?.(values);
@@ -134,11 +131,6 @@ const UpdatePostModal: React.FC<Props> = (props) => {
         }}
         name="pic"
         label={'封面'}
-      />
-      <TagTreeSelect
-        name={'tags'}
-        label={'标签'}
-        initialValue={oldData?.tags ? JSON.parse(oldData?.tags) : []}
       />
     </ModalForm>
   );
